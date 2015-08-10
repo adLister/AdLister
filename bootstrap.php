@@ -1,4 +1,5 @@
 <?php
+
 require_once 'utils/Auth.php';
 require_once 'utils/Input.php';
 require_once 'utils/logger.php';
@@ -12,3 +13,5 @@ require_once 'utils/logger.php';
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
