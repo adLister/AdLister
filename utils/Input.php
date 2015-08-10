@@ -10,9 +10,9 @@ class Input
      */
     public static function has($key)
     {
-        if(isset($_REQUEST[$key])){
+        if (!empty($_REQUEST[$key])) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
@@ -26,43 +26,65 @@ class Input
      */
     public static function get($key, $default = null)
     {
-        if (self::has($key)){
-            return $_REQUEST[$key];
-        } else{
-            return null;
+        if (!empty($_REQUEST[$key])) {
+            return self::escape($_REQUEST[$key]);
+        } else {
+            return NULL;
         }
     }
 
-    // These methods should use the get() method internally to retrieve the value from $_POST or $_GET.
-    // If the values does not exist, or match the expected type, throw an exception
-    public function getString($key)
+    public static function getString($key, $min = '2', $max = '30')
     {
-        $value = static::get($key);
-
-        if (!isset($value) {
-            throw new Exception('{$key} is a required field!'); 
+        $value = trim(static::get($key));
+        // $isString = settype($value, 'string');
+        if(!isset($value)){
+             throw new Exception('Input must not be a null!');
         }
-
-        if (!is_string($value) {
-            throw new Exception('{$key} must be a string!'); 
+        // Check if value is a string
+        if (!is_string($_REQUEST[$key])) {
+            throw new DomainException('Input must be a string!');
         }
+        if(strlen($value) > $max || strlen($value) < $min){
+            throw new LengthException('Input must be between 2-30 characters');
+        }
+        
+        return $value;
+    }    
 
-        $this->key = trim($key);
+    public static function getNumber($key ,$min = '2', $max = '10')
+    {
+        $value = str_replace(',', '', static::get($key));
+
+        if(!isset($value)){
+            throw new Exception('Area in acres input must not be a null!');
+        }
+        // Check if value is a string
+        if (!is_numeric($_REQUEST[$key])) {
+            throw new DomainException('Area in acres input must be a number!');
+        }
+        if(strlen($value) > $max || strlen($value) < $min){
+            throw new RangeException('Area in acres input must be between 2-10 digits');
+        }
+        return $value;
     }
 
-    public function getNumber($key)
-    {
-        $value = static::get($key);
+    public static function getDate($key){
 
-        if (!isset($value) {
-            throw new Exception('{$key} is a required field!');
+        $value = trim(static::get($key));
+        $format = 'Y-m-d';
+
+        $dateObject = DateTime::createFromFormat($format, $value);
+        if($dateObject){
+            $dateString = $dateObject->format($format);
+            return $dateString;
+        }else{
+            throw new Exception('Input must be a valid date!');
         }
 
-        if (!is_numeric($value) {
-            throw new Exception('{$key} must be numeric!');
-        }
+    }
 
-        $this->key = trim($key);
+    public static function escape($input){
+        return htmlspecialchars(strip_tags($input));
     }
 
     ///////////////////////////////////////////////////////////////////////////
