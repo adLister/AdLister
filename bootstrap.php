@@ -1,9 +1,8 @@
 <?php
 
-require_once '/utils/Auth.php';
-require_once '/utils/Input.php';
-require_once '/utils/logger.php';
-require_once '/utils/Log.php';
+require_once 'utils/Auth.php';
+require_once 'utils/Input.php';
+require_once 'utils/logger.php';
 ?>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <!-- Latest compiled and minified CSS -->
@@ -15,5 +14,5 @@ require_once '/utils/Log.php';
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="/public/css/custom.css">
+
 
