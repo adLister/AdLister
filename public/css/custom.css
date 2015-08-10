@@ -1,0 +1,25 @@
+#form{
+        border: 1px solid #777;
+}
+#container{
+    width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+}
+#next_page{
+    float: right;
+}
+#previous_page{
+    float: left;
+}
+#container_ads{
+    margin-left: auto;
+    margin-right: auto;
+    width: 650px;
+}
+h1, h2{
+    text-align: center;
+}
+hr{
+    border-color: black;
+}

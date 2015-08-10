@@ -75,40 +75,6 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
 <html>
 <head>
     <title>National ads</title>
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <style type="text/css">
-    #form{
-        border: 1px solid #777;
-    }
-    #container{
-        width: 900px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    #next_page{
-        float: right;
-    }
-    #previous_page{
-        float: left;
-    }
-    #container_ads{
-        margin-left: auto;
-        margin-right: auto;
-        width: 650px;
-    }
-    h1, h2{
-        text-align: center;
-    }
-    hr{
-        border-color: black;
-    }
-    </style>
-    
 </head>
 <body>
     <h1><u>National ads</u></h1>
@@ -160,11 +126,6 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
             <?php endif ?>
         </ul>
     </div>
-
-
-    <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
 
 </body>
 </html>
