@@ -1,4 +1,9 @@
 <?php
+// class InvalidArgumentException extends Exception { }
+// class OutOfRangeException extends InvalidArgumentException { }
+// class DomainException extends OutOfRangeException { }
+// class LengthException extends DomainException { }
+// class RangeException extends LengthException { }
 
 class Input
 {
@@ -35,35 +40,69 @@ class Input
 
     // These methods should use the get() method internally to retrieve the value from $_POST or $_GET.
     // If the values does not exist, or match the expected type, throw an exception
-    public function getString($key)
+    public static function getString($key, $min = 1, $max = 500)
     {
-        $value = static::get($key);
+        $value = trim(static::get($key));
 
-        if (!isset($value) {
-            throw new Exception('{$key} is a required field!'); 
+        if (empty($key)) {
+            throw new OutOfRangeException("$key is a required field!"); 
         }
 
-        if (!is_string($value) {
-            throw new Exception('{$key} must be a string!'); 
+        if (!is_string($value) || is_numeric($value)) {
+            throw new DomainException("$key must be a string!");
         }
 
-        $this->key = trim($key);
+        if (!isset($value) || is_numeric($value)){
+            throw new InvalidArgumentException("$key must be a string!"); 
+        }
+
+        if (strlen($value) < $min) {
+            throw new LengthException("$key is too short!");
+        } else if (strlen($value) > $max) {
+            throw new LengthException("$key is too long!");
+        }
+
+        return $value;
     }
 
-    public function getNumber($key)
+    public static function getNumber($key, $min = 1, $max = 9999999999999)
     {
-        $value = static::get($key);
+        $value = trim(str_replace(',', '', static::get($key)));
 
-        if (!isset($value) {
-            throw new Exception('{$key} is a required field!');
+        if (empty($key)) {
+            throw new OutOfRangeException("$key is a required field!");
         }
 
-        if (!is_numeric($value) {
-            throw new Exception('{$key} must be numeric!');
+        if (!is_numeric($min) || !is_numeric($max)) {
+            throw new InvalidArgumentException("$key must be numeric!");
         }
 
-        $this->key = trim($key);
+        if (!is_numeric($value)) {
+            throw new DomainException("$key must be numeric!");
+        }
+
+        if ($value < $min) {
+            throw new RangeException("$key is too small!");
+        } else if ($value > $max) {
+            throw new RangeException("$key is too big!");
+        }
+
+        return $value;
     }
+
+    // public static function getDate($key)
+    // {
+    //     $value = static::get($key);
+    //     $format = 'Y-m-d';
+
+    //     $dateObject = DateTime::createFromFormat($format, $value);
+
+    //     if ($dateObject) {
+    //         return $dateObject->date;
+    //     } else {
+    //         throw new Exception('This must be a valid date');
+    //     }
+    // }
 
     ///////////////////////////////////////////////////////////////////////////
     //                      DO NOT EDIT ANYTHING BELOW!!                     //
