@@ -10,7 +10,7 @@ $offset = (($_GET['page']-1) * $limit);
 if(empty($_GET)){
     header('location: ?page=1');
     exit();
-}
+} 
 
 $errorMessage = 'Add an Ad';
 
