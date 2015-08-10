@@ -1,7 +1,7 @@
 <?php
 
 require_once '../database/db_connect.php';
-require_once '../utils/Input.php';
+require_once '../bootstrap.php';
 
 $errors = array();
 $limit = 4;
