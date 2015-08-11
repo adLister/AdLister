@@ -1,0 +1,89 @@
+body{
+    background-color: #DFD7E2;
+    font-family: Helvetica, sans-serif;
+    background-image: url("/img/map.png");
+    background-repeat: no-repeat;
+    background-position: 60% 115%;
+}
+
+input:focus{
+    outline-color: #DFD7E2;
+}
+
+/*styling for header*/
+
+#header{
+    background-color: #0C7489;
+    height: 80px;
+}
+#site-name {
+    float: left;
+    padding: 0;
+    margin: 10px;
+    font-size: 4em;
+    color: #E1FFFF;
+    line-height: 60px;
+}
+
+#login-form {
+    float: right;
+    width: 250px;
+    margin: 5px;
+    color: #E1FFFF;
+}
+
+#username {
+    float: left;
+}
+#password {
+    float: right;
+}
+
+#login-button{
+    float: right;
+    margin: 3px;
+    color: #0C7489;
+}
+
+.login {
+    color: #0C7489;
+    height: 15px;
+    width: 115px;
+    padding: 3px;
+    border: 1px solid #DFD7E2;
+    border-radius: 3px;
+}
+
+/*styling for main body*/
+#sign-up {
+    width: 200px;
+    height: 500px;
+    /*border:1px solid black;*/
+    margin: auto;
+
+}
+.new-user {
+    color: #0C7489;
+    height: 30px;
+    width: 200px;
+    padding: 3px;
+    margin: 5px 0;
+    border: 1px solid #DFD7E2;
+    border-radius: 5px;
+}
+
+#sub-header {
+    color: #0C7489;
+    text-align: center;
+}
+
+#submit-button {
+    width: 200px;
+    height: 25px;
+    border: 1px solid #DFD7E2;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #0C7489;
+    margin: auto;
+}
+
