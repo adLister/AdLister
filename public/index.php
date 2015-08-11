@@ -1,6 +1,4 @@
 <?php
-
-require_once '../database/db_connect.php';
 require_once '../bootstrap.php';
 
 $errors = array();
@@ -29,33 +27,46 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
 ?>
 <html>
 <head>
-    <title>National ads</title>
-    <link rel="stylesheet" href="/public/css/custom.css"> 
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/custom.css"> 
 </head>
+
 <body>
-    <h1><u>National ads</u></h1>
+    <div>
+    <?= require_once '../views/partials/sidebar.php'; ?>
+
+    <h1>Most Recent</h1>
     <div id="container_ads">
         <div class="row">
             <? foreach ($ads as $key => $value): ?>
-                <div class="col-sm-5">
+                <div id="most_recent" class="col-sm-8">
                     <ul><strong><u><?= $value['title'];?></strong></u>
                         <p><img src="<?= $value['image_url'];?>" alt=""></p>
                         <li>Date Created: <?= $value['date_created'];?></li>
                         <li>Description: <?= $value['description'];?></li>
                     </ul>
                 </div>
-            <? endforeach;?>
+            <? endforeach; ?>
+        </div>
+        <div>
+            <ul class="pager">
+                <?php if($_GET['page'] >= 2): ?>    
+                    <li id='previous_page'><a href='index.php?page=<?= $_GET['page'] - 1 ?>'>Previous Page</a></li>
+                <?php endif ?>
+                
+                <?php if($_GET['page'] != $maxpage):?>  
+                    <li id='next_page'><a href='index.php?page=<?= $_GET['page'] + 1 ?>'>Next Page</a></li>
+                <?php endif ?>
+            </ul>
         </div>
     </div>
-        <hr>
-        <ul class='pager'>
-            <?php if($_GET['page'] != $maxpage):?>  
-                <li id='next_page'><a href='index.php?page=<?= $_GET['page'] + 1 ?>'>Next Page</a></li>
-            <?php endif ?>
-            <?php if($_GET['page'] >= 2): ?>    
-                <li id='previous_page'><a href='index.php?page=<?= $_GET['page'] - 1 ?>'>Previous Page</a></li>
-            <?php endif ?>
-        </ul>
-    </div>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>

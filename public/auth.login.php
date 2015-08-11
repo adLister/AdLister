@@ -1,7 +1,5 @@
 <?php
-require_once '../function.php';
-require_once '../Auth.php';
-require_once '../Input.php';
+require_once '../bootstrap.php';
 
 
 session_start();

@@ -1,5 +1,12 @@
+# Convert Sass to SCSS
+$ sass-convert style.sass style.scss
+
+$font-stack: Helvetica, sans-serif
+$font-color: #040404
+$background-color: #00A69A
+
 #form{
-    border: 1px solid #777;
+    border: 1px solid #000;
 }
 #container{
     width: 1200px;
@@ -9,18 +16,15 @@
 #next_page{
     float: right;
 }
-
 #previous_page{
     float: left;
 }
 #container_ads{
     margin-left: auto;
     margin-right: auto;
-    width: 650px;
+    / width: 650px;
 }
-h1, h2{
-    text-align: center;
-}
+
 hr{
     border-color: black;
 }
