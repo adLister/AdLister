@@ -42,7 +42,7 @@
                   <li>Legal</li>
                   <li>Lessons</li>
                   <li>Pet</li>
-                  <li>Real Estate</li>
+                  <li>Realator</li>
                 </ul>
 
                 <li data-toggle="collapse" data-target="#jobs" class="collapsed">
