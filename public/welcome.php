@@ -17,7 +17,7 @@ if (Input::has('username') && Input::has('password')){
 }
 
 if(Auth::check()){
-    header("Location: http://codeup.dev/authorized.php");
+    header("Location: index.php");
     exit();
 }
 
