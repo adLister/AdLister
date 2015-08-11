@@ -2,29 +2,38 @@
 
 require_once '../bootstrap.php';
 $errors = array();
-// if(!empty($_POST)){
-//     try { 
-//         Input::getString('title');
-//     }catch(Exception $e){
-//         $errors[] = $e->getMessage(). ' for the title feild.';
-//     }
+if(!empty($_POST)){
+    try { 
+        Input::getString('title');
+    }catch(Exception $e){
+        $errors[] = $e->getMessage(). ' for the title feild.';
+    }
 
-//     try { 
-//         Input::getString('description');
-//     }catch(Exception $e){
-//             $errors[] = $e->getMessage() . ' for the description feild.';
-//     }
+    try { 
+        Input::getString('description');
+    }catch(Exception $e){
+            $errors[] = $e->getMessage() . ' for the description feild.';
+    }
+
+    if($_FILES) {
+        $uploads_directory = 'img/uploads/';
+        $filename = $uploads_directory . basename($_FILES['file']['name']);
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $filename)) {
+            echo '<h1>Your new add post with image '. basename( $_FILES['file']['name']). ' has been uploaded.</h1>';
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
 
     if(empty($errors)){
         $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url) 
         VALUES(:title,:description,:image_url)");
-        var_dump($_FILES);
-        // $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
-        // $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
-        // $newPost->bindValue(':image_url', Input::getString('image_url'), PDO::PARAM_STR);
-        // $newPost->execute();
+        $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
+        $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
+        $newPost->bindValue(':image_url', $filename, PDO::PARAM_STR);
+        $newPost->execute();
     }
-// }
+}
 
 
 
@@ -51,7 +60,7 @@ $errors = array();
                 </div>                
                 <div class="form-group">
                     <label for="exampleInputFile" name="image_url" id="image_url" accept='image/*'>File input</label>
-                    <input type="file" id="exampleInputFile" name="file">
+                    <input type="file" id="exampleInputFile" name="file" >
                     <p class="help-block">Accepts PNG, JPEG, JPG, and GIFS.</p>
                 </div>
                 <button class="btn btn-lg btn-info btn-block"type="submit">Submit</button>                

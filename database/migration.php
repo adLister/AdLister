@@ -12,7 +12,7 @@ $dbc->exec($dropTableIf);
 $addTable = "CREATE TABLE ads (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
-    date_created DATE NOT NULL,
+    date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     description VARCHAR(500) NOT NULL,
     image_url VARCHAR(200),
     PRIMARY KEY (id))";
