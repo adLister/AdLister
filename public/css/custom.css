@@ -2,7 +2,7 @@
     border: 1px solid #777;
 }
 #container{
-    width: 1200px;
+    width: 900px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -23,4 +23,8 @@ h1, h2{
 }
 hr{
     border-color: black;
+}
+
+textarea{
+    height: 200px;
 }

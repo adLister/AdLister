@@ -14,6 +14,11 @@ if(!empty($_POST)){
     }catch(Exception $e){
             $errors[] = $e->getMessage() . ' for the description feild.';
     }
+    try { 
+        Input::getString('category');
+    }catch(Exception $e){
+            $errors[] = $e->getMessage() . ' for the category feild.';
+    }
 
     if($_FILES) {
         $uploads_directory = 'img/uploads/';
@@ -24,25 +29,63 @@ if(!empty($_POST)){
             echo "Sorry, there was an error uploading your file.";
         }
     }
-
     if(empty($errors)){
-        $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url) 
-        VALUES(:title,:description,:image_url)");
+        $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url,category) 
+        VALUES(:title,:description,:image_url,:category)");
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
         $newPost->bindValue(':image_url', $filename, PDO::PARAM_STR);
+        $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
         $newPost->execute();
     }
 }
 
-
-
+$category = array(
+'Accounting & Finance',
+'Admin & Office',
+'Art/Media/Design',
+'Biotech & Science',
+'Business/Mgmt',
+'Customer Service',
+'Education',
+'Human Resources',
+'Internet Engineers',
+'Legal/Peralegal',
+'Medical/Health',
+'Real Estate',
+'Salon/Spa/Fitness',
+'Security',
+'Software/QA/DBA',
+'Technical Support',
+'Transport',
+'Writing/Editing',
+'Appliances',
+'Arts & Crafts',
+'Auto Parts',
+'Baby & kid',
+'Books',
+'Cars & Trucks',
+'Computers & Electronics',
+'Furniture',
+'Music',
+'Sports & Outdoors',
+'Tools',
+'Video Gaming',
+'Automotive',
+'Computer & Technology',
+'Event',
+'Legal',
+'Lessons',
+'Pet',
+'Realator');
 ?>
 
 <html>
     <head>  
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
-        <link rel="stylesheet" href="/public/css/custom.css"> 
+        <link rel="stylesheet" href="/css/custom.css"> 
     </head>
     <body>
         <h2>Create a new post!</h2>
@@ -54,10 +97,13 @@ if(!empty($_POST)){
             <form action="ads.create.php" method="POST" enctype="multipart/form-data">
                 <div class="input-group-lg">
                   <input type="text" class="form-control" value="<?php if(!empty($_POST['title'])){ echo $_POST['title'];}?>" placeholder=" Post Title" name="title" id="title" required="" aria-describedby="basic-addon1">
-                </div>                 
-                <div class="input-group-lg">
-                  <input type="text" class="form-control" value="<?php if(!empty($_POST['description'])){ echo $_POST['description'];}?>" placeholder="Description" name="description" id="description" required="" aria-describedby="basic-addon1">
-                </div>                
+                </div>
+                <textarea type="text" class="form-control" value="<?php if(!empty($_POST['description'])){ echo $_POST['description'];}?>" placeholder="Description" name="description" id="description" required="" aria-describedby="basic-addon1"></textarea>
+                <select class="category" name="category" required="">
+                    <?foreach ($category as $key):?>
+                        <option><?= $key; ?></option>
+                    <? endforeach?>
+                </select><br>              
                 <div class="form-group">
                     <label for="exampleInputFile" name="image_url" id="image_url" accept='image/*'>File input</label>
                     <input type="file" id="exampleInputFile" name="file" >
@@ -66,5 +112,7 @@ if(!empty($_POST)){
                 <button class="btn btn-lg btn-info btn-block"type="submit">Submit</button>                
             </form>
         </div>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </body>
 </html>
