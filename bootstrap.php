@@ -4,7 +4,7 @@ require_once 'utils/Auth.php';
 require_once 'utils/Input.php';
 require_once 'utils/logger.php';
 
-require_once '../database/db_connect.php';
+require_once 'database/db_connect.php';
 
 ?>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -16,5 +16,3 @@ require_once '../database/db_connect.php';
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-

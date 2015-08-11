@@ -1,12 +1,5 @@
 <?PHP
 
-define("DB_HOST", '127.0.0.1');
-
-define("DB_NAME", 'adlister_db');
-
-define("DB_USER", 'adlister_user');
-
-define("DB_PASS", 'password');
 
 require_once 'db_connect.php';
 
@@ -23,5 +16,6 @@ $addTable = "CREATE TABLE ads (
     description VARCHAR(500) NOT NULL,
     image_url VARCHAR(200),
     PRIMARY KEY (id))";
+
 
 $dbc->exec($addTable);
