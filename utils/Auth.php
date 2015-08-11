@@ -1,5 +1,5 @@
 <?php
-require_once 'Input.php';
+require_once '../bootstrap.php';
 
 class Auth
 {
