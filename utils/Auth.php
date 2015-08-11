@@ -1,6 +1,5 @@
 <?php
 require_once 'Input.php';
-require_once 'Log.php';
 
 class Auth
 {

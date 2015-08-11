@@ -30,14 +30,14 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
 <html>
 <head>
     <title>National ads</title>
-    <link rel="stylesheet" href="/public/css/custom.css"> 
+    <link rel="stylesheet" href="/css/custom.css"> 
 </head>
 <body>
     <h1><u>National ads</u></h1>
     <div id="container_ads">
         <div class="row">
             <? foreach ($ads as $key => $value): ?>
-                <div class="col-sm-5">
+                <div class="col-sm-8">
                     <ul><strong><u><?= $value['title'];?></strong></u>
                         <p><img src="<?= $value['image_url'];?>" alt=""></p>
                         <li>Date Created: <?= $value['date_created'];?></li>
