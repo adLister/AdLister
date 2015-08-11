@@ -1,7 +1,7 @@
 <?php
 
 require_once '../database/db_connect.php';
-require_once '../utils/Input.php';
+require_once '../bootstrap.php';
 
 $errors = array();
 $limit = 4;
@@ -30,6 +30,7 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
 <html>
 <head>
     <title>National ads</title>
+    <link rel="stylesheet" href="/public/css/custom.css"> 
 </head>
 <body>
     <h1><u>National ads</u></h1>
@@ -38,8 +39,8 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
             <? foreach ($ads as $key => $value): ?>
                 <div class="col-sm-5">
                     <ul><strong><u><?= $value['title'];?></strong></u>
-                        <li>State located in: <?= $value['date_created'];?></li>
-                        <li>Date established: <?= $value['image_url'];?></li>
+                        <p><img src="<?= $value['image_url'];?>" alt=""></p>
+                        <li>Date Created: <?= $value['date_created'];?></li>
                         <li>Description: <?= $value['description'];?></li>
                     </ul>
                 </div>
@@ -56,6 +57,5 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
             <?php endif ?>
         </ul>
     </div>
-
 </body>
 </html>
