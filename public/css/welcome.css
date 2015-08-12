@@ -4,6 +4,7 @@ body{
     background-image: url("/img/map.png");
     background-repeat: no-repeat;
     background-position: 60% 115%;
+    margin: 0 !important;
 }
 
 input:focus{
