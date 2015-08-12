@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config.php';
+require_once '../database/db_connect.php';
 
 class Model
 {

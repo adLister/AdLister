@@ -2,28 +2,61 @@
 require_once '../bootstrap.php';
 
 
-$errors = array();
-if(!empty($_POST)){
+
+$create_errors = array();
+if(isset($_POST['new-user-email'])){
     try { 
-        Input::getString('email');
+        if(Input::has('new-user-email')){
+            $new_email = Input::getString('new-user-email');
+        }
+        var_dump($new_email);
     }catch(Exception $e){
-        $errors[] = $e->getMessage(). ' for the email feild.';
+        $create_errors[] = $e->getMessage(). ' for the email feild.';
     }
 
     try { 
         Input::getString('password');
     }catch(Exception $e){
+            $create_errors[] = $e->getMessage() . ' for the password feild.';
+    }
+
+    if(empty($create_errors)){
+        $newPost = $dbc->prepare("INSERT INTO users(email, password) 
+        VALUES(:email,:password)");
+        $hashedPassword = password_hash(Input::getString('password'), PASSWORD_DEFAULT);
+        $newPost->bindValue(':email', $new_email, PDO::PARAM_STR);
+        $newPost->bindValue(':password', $hashedPassword, PDO::PARAM_STR);
+        $newPost->execute();
+    }
+}
+
+
+if(isset($_POST['email'])){
+    try {
+        if(Input::has('email')) {
+            $email = Input::getString('email');
+        }
+
+        // $email = (Input::has('email')) ? Input::getString('email') : null;
+    }catch(Exception $e){
+        $errors[] = $e->getMessage(). ' for the email feild.';
+    }
+
+    try {
+        if(Input::has('password')) {
+            $password = Input::getString('password');
+        }
+    }catch(Exception $e){
             $errors[] = $e->getMessage() . ' for the password feild.';
     }
 
     if(empty($errors)){
-        $newPost = $dbc->prepare("INSERT INTO users(email, password) 
-        VALUES(:email,:password)");
-        $newPost->bindValue(':email', Input::getString('email'), PDO::PARAM_STR);
-        $newPost->bindValue(':password', Input::getString('password'), PDO::PARAM_STR);
-        $newPost->execute();
+        Auth::attempt($email , $password, $dbc);
     }
 }
+
+
+
 
 ?>
 
@@ -39,7 +72,7 @@ if(!empty($_POST)){
         <span id="site-name">Site Name</span>
 
         <div id="login-form">
-            <form>
+            <form method="POST" action="welcome.php">
                 <div id="email">
                     </label>Email: </label><br>
                     <input class="login" id="input-email" type="text" name="email" placeholder="Email" autofocus>
@@ -57,7 +90,7 @@ if(!empty($_POST)){
             <h1>Sign Up!</h1>
         </div>
         <form action="welcome.php" method="POST">
-            <input class="new-user" id="new-user-email" type="text" name="email" placeholder="Email"><br>
+            <input class="new-user" id="new-user-email" type="text" name="new-user-email" placeholder="Email"><br>
             <input class="new-user" id="new-user-password" type="password" name="password" placeholder="Password"><br>
             <button id="submit-button" type="submit">Submit</button>
         </form>
