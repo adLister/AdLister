@@ -38,14 +38,14 @@ class Input
         $value = trim(static::get($key));
         // $isString = settype($value, 'string');
         if(!isset($value)){
-             throw new Exception('Input must not be a null!');
+             throw new Exception("$key must not be a null!");
         }
         // Check if value is a string
         if (!is_string($_REQUEST[$key])) {
-            throw new DomainException('Input must be a string!');
+            throw new DomainException("$key must be a string!");
         }
         if(strlen($value) > $max || strlen($value) < $min){
-            throw new LengthException('Input must be between 2-30 characters');
+            throw new LengthException("$key must be between 2-30 characters");
         }
         
         return $value;
@@ -56,14 +56,14 @@ class Input
         $value = str_replace(',', '', static::get($key));
 
         if(!isset($value)){
-            throw new Exception('Area in acres input must not be a null!');
+            throw new Exception("$key must not be a null!");
         }
         // Check if value is a string
         if (!is_numeric($_REQUEST[$key])) {
-            throw new DomainException('Area in acres input must be a number!');
+            throw new DomainException("$key must be a number!");
         }
         if(strlen($value) > $max || strlen($value) < $min){
-            throw new RangeException('Area in acres input must be between 2-10 digits');
+            throw new RangeException("$key must be between 2-10 digits");
         }
         return $value;
     }
@@ -78,7 +78,7 @@ class Input
             $dateString = $dateObject->format($format);
             return $dateString;
         }else{
-            throw new Exception('Input must be a valid date!');
+            throw new Exception("$key must be a valid date!");
         }
 
     }

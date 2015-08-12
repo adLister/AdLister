@@ -1,4 +1,4 @@
-<?PHP
+<?php
 
 require_once '../bootstrap.php';
 $errors = array();
@@ -6,18 +6,18 @@ if(!empty($_POST)){
     try { 
         Input::getString('title');
     }catch(Exception $e){
-        $errors[] = $e->getMessage(). ' for the title feild.';
+        $errors[] = $e->getMessage();
     }
 
     try { 
         Input::getString('description');
     }catch(Exception $e){
-            $errors[] = $e->getMessage() . ' for the description feild.';
+            $errors[] = $e->getMessage();
     }
     try { 
         Input::getString('category');
     }catch(Exception $e){
-            $errors[] = $e->getMessage() . ' for the category feild.';
+            $errors[] = $e->getMessage();
     }
 
     if($_FILES) {
@@ -81,36 +81,48 @@ $category = array(
 ?>
 
 <html>
-    <head>  
+    <head>
+        <title>Add Post</title>
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
+        <link rel="stylesheet" href="/css/ads.create.css"> 
         <link rel="stylesheet" href="/css/custom.css"> 
     </head>
     <body>
-        <h2>Create a new post!</h2>
+        <h2 id="header">Create a new post!</h2>
         <div id="container">
-        <?PHP foreach ($errors as $error):?>
-            <p><?= $error ?></p>
-        <?PHP endforeach ?>
-        <div id="form">
-            <form action="ads.create.php" method="POST" enctype="multipart/form-data">
-                <div class="input-group-lg">
-                  <input type="text" class="form-control" value="<?php if(!empty($_POST['title'])){ echo $_POST['title'];}?>" placeholder=" Post Title" name="title" id="title" required="" aria-describedby="basic-addon1">
-                </div>
-                <textarea type="text" class="form-control" value="<?php if(!empty($_POST['description'])){ echo $_POST['description'];}?>" placeholder="Description" name="description" id="description" required="" aria-describedby="basic-addon1"></textarea>
-                <select class="category" name="category" required="">
-                    <?foreach ($category as $key):?>
-                        <option><?= $key; ?></option>
-                    <? endforeach?>
-                </select><br>              
-                <div class="form-group">
-                    <label for="exampleInputFile" name="image_url" id="image_url" accept='image/*'>File input</label>
-                    <input type="file" id="exampleInputFile" name="file" >
-                    <p class="help-block">Accepts PNG, JPEG, JPG, and GIFS.</p>
-                </div>
-                <button class="btn btn-lg btn-info btn-block"type="submit">Submit</button>                
-            </form>
+            <div id="errors">
+                <?php foreach ($errors as $error):?>
+                    <p><?= $error ?></p>
+                <?php endforeach ?>
+            </div>
+
+            <div id="form">
+                <form action="ads.create.php" method="POST" enctype="multipart/form-data">
+                    <label>*Title:</label>
+                    <input id="title" type="text" placeholder="Post Title" name="title" value="<?php if(!empty($_POST['title'])){ echo $_POST['title'];}?>"autofocus><br>
+
+                    <div>
+                        <label>*Category:</label>
+                        <select id="category" name="category">
+                            <?php foreach ($category as $key):?>
+                                <option><?= $key; ?></option>
+                            <?php endforeach?>
+                        </select><br>   
+
+                        <label for="exampleInputFile" name="image_url" id="image_url" accept='image/*'>File input:</label>
+                        <input id="exampleInputFile" type="file" name="file">
+                        <p class="help-block">Accepts PNG, JPEG, JPG, and GIFS.</p>
+                    </div>
+
+                    <label>*Description:</label><br>
+                    <textarea id="description" type="text" placeholder="Description" name="description" value="<?php if(!empty($_POST['description'])){ echo $_POST['description'];}?>"></textarea><br>
+                    <button id="submit" type="submit">Submit</button>
+                    <p id="required">*Required Fields</p>
+                </form>
+            </div>
         </div>
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

@@ -1,6 +1,6 @@
 
 <div class="nav-side-menu">
-    <div class="brand">Site Name</div>
+    <div class="brand">WeGotIt</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
   
         <div class="menu-list">
