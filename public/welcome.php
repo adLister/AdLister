@@ -1,6 +1,8 @@
 <?php
 require_once '../bootstrap.php';
 
+session_start();
+$sessionId = session_id();
 
 
 $create_errors = array();
@@ -56,7 +58,21 @@ if(isset($_POST['email'])){
 }
 
 
+$LOGGED_IN_USER = false;
 
+if (Input::has('username') && Input::has('password')){
+    $username = escape(trim(Input::get('username')));
+    $password = trim(Input::get('password'));
+        
+    if (isset($_POST['username'])){
+        Auth::attempt($username, $password);
+    }
+}
+
+if(Auth::check()){
+    header("Location: index.php");
+    exit();
+}
 
 ?>
 

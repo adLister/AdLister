@@ -1,6 +1,21 @@
 <?php
 require_once '../bootstrap.php';
 
+session_start();
+$sessionId = session_id();
+
+if (Auth::check()){
+    $username = Auth::user();   
+} else{
+    header("Location: welcome.php");
+    exit();
+}
+
+if (Input::has('logout') && $_GET['logout'] == 'true'){
+    header("Location: welcome.php");
+    exit(); 
+}
+
 $errors = array();
 $limit = 5;
 $offset = (($_GET['page']-1) * $limit);
