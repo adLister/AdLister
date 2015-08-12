@@ -1,6 +1,21 @@
 <?php
 require_once '../bootstrap.php';
 
+session_start();
+$sessionId = session_id();
+
+if (Auth::check()){
+    $username = Auth::user();   
+} else{
+    header("Location: welcome.php");
+    exit();
+}
+
+if (Input::has('logout') && $_GET['logout'] == 'true'){
+    header("Location: welcome.php");
+    exit(); 
+}
+
 $errors = array();
 $limit = 5;
 $offset = (($_GET['page']-1) * $limit);
@@ -61,11 +76,11 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
         <div>
             <ul class="pager">
                 <?php if($_GET['page'] >= 2): ?>    
-                    <li id='previous_page'><a href='index.php?page=<?= $_GET['page'] - 1 ?>'>Previous Page</a></li>
+                    <li id="previous_page" class="pager-buttons"><a href='index.php?page=<?= $_GET['page'] - 1 ?>'>Previous Page</a></li>
                 <?php endif ?>
                 
                 <?php if($_GET['page'] != $maxpage):?>  
-                    <li id='next_page'><a href='index.php?page=<?= $_GET['page'] + 1 ?>'>Next Page</a></li>
+                    <li id="next_page" class="pager-buttons"><a href='index.php?page=<?= $_GET['page'] + 1 ?>'>Next Page</a></li>
                 <?php endif ?>
             </ul>
         </div>
