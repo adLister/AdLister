@@ -1,33 +1,33 @@
 body{
     background-color: #DFD7E2;
 }
-#form{
-    border: 1px solid #777;
+
+h1 {
+    color: #000;
 }
-#container{
+
+#container_ads{
     width: 900px;
     margin-right: auto;
     margin-left: auto;
 }
+
+#container_ads{
+    margin-left: auto;
+    margin-right: auto;
+    width: 650px;
+}
+
+/*pager buttons*/
+.pager-buttons {
+    background-color: #0C7489;
+    color: ;
+}
+
 #next_page{
     float: right;
 }
 
 #previous_page{
     float: left;
-}
-#container_ads{
-    margin-left: auto;
-    margin-right: auto;
-    width: 650px;
-}
-h1, h2{
-    text-align: center;
-}
-hr{
-    border-color: black;
-}
-
-textarea{
-    height: 200px;
 }
