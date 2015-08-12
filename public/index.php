@@ -64,7 +64,7 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
             <? foreach ($ads as $key => $value): ?>
                 <div id="most_recent" class="col-sm-8">
                     <ul>
-                        <p><img src="<?= $value['image_url'];?>" alt=""></p>
+                        <?php if($value['image_url']):?><p><img src="img/uploads/<?= $value['image_url'];?>" alt=""></p><?php endif ?>
                         <div id="post_details">
                             <strong><u><?= $value['title'];?></strong>
                             <li>Date Created: <?= $value['date_created'];?></li>
