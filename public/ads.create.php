@@ -1,6 +1,7 @@
 <?php
 
 require_once '../bootstrap.php';
+
 $errors = array();
 if(!empty($_POST)){
     try { 
