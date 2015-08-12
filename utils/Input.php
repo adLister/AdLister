@@ -33,7 +33,7 @@ class Input
         }
     }
 
-    public static function getString($key, $min = '2', $max = '30')
+    public static function getString($key, $min = 2, $max = 30)
     {
         $value = trim(static::get($key));
         // $isString = settype($value, 'string');
@@ -41,7 +41,7 @@ class Input
              throw new Exception("$key must not be a null!");
         }
         // Check if value is a string
-        if (!is_string($_REQUEST[$key])) {
+        if (!is_string($value)) {
             throw new DomainException("$key must be a string!");
         }
         if(strlen($value) > $max || strlen($value) < $min){
@@ -51,7 +51,7 @@ class Input
         return $value;
     }    
 
-    public static function getNumber($key ,$min = '2', $max = '10')
+    public static function getNumber($key ,$min = 2, $max = 30)
     {
         $value = str_replace(',', '', static::get($key));
 

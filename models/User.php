@@ -3,12 +3,12 @@ require_once 'Model.php';
 
 class User extends Model
 {
-    protected static $table = 'contacts';
+    protected static $table = 'users';
 
 	public static function find($id)
 	{
         self::dbConnect();
-        $query = 'SELECT * FROM contacts WHERE id = :id';
+        $query = 'SELECT * FROM users WHERE id = :id';
     	$stmt = self::$dbc->prepare($query);
     	$stmt->bindValue(':id', $id, PDO::PARAM_INT);
     	$stmt->execute();
@@ -22,13 +22,13 @@ class User extends Model
         return $instance;
 	}
 
-    // Get all rows from contacts table
+    // Get all rows from users table
     public static function all()
     {
         self::dbConnect();
 
         // get all rows
-        $stmt = self::$dbc->query('SELECT * FROM contacts');
+        $stmt = self::$dbc->query('SELECT * FROM users');
 
         // Assign result to variable
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // <-- this is okay because there's not a prepared statement
@@ -51,7 +51,7 @@ class User extends Model
 
     public function update()
     {
-        $query = 'UPDATE contacts
+        $query = 'UPDATE users
                 SET first_name = :first_name, 
                     last_name = :last_name,
                     email = :email,
@@ -68,7 +68,7 @@ class User extends Model
 
     public function insert()
     {
-        $query = 'INSERT INTO contacts (first_name, last_name, email, phone) VALUES (:first_name, :last_name, :email, :phone)';
+        $query = 'INSERT INTO users (first_name, last_name, email, phone) VALUES (:first_name, :last_name, :email, :phone)';
         $stmt = self::$dbc->prepare($query);
         $stmt->bindValue(':first_name', $this->attributes['first_name'], PDO::PARAM_STR);
         $stmt->bindValue(':last_name', $this->attributes['last_name'], PDO::PARAM_STR);
@@ -79,7 +79,7 @@ class User extends Model
 
     public function delete()
     {
-        $query = 'DELETE FROM contacts WHERE id = :id';
+        $query = 'DELETE FROM users WHERE id = :id';
         $stmt = self::$dbc->prepare($query);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
