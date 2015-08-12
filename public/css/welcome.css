@@ -33,7 +33,7 @@ input:focus{
     color: #E1FFFF;
 }
 
-#username {
+#email {
     float: left;
 }
 #password {

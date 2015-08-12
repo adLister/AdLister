@@ -2,24 +2,61 @@
 require_once '../bootstrap.php';
 
 
-session_start();
-$sessionId = session_id();
 
-$LOGGED_IN_USER = false;
+$create_errors = array();
+if(isset($_POST['new-user-email'])){
+    try { 
+        if(Input::has('new-user-email')){
+            $new_email = Input::getString('new-user-email');
+        }
+        var_dump($new_email);
+    }catch(Exception $e){
+        $create_errors[] = $e->getMessage(). ' for the email feild.';
+    }
 
-if (Input::has('username') && Input::has('password')){
-    $username = escape(trim(Input::get('username')));
-    $password = trim(Input::get('password'));
-        
-    if (isset($_POST['username'])){
-        Auth::attempt($username, $password);
+    try { 
+        Input::getString('password');
+    }catch(Exception $e){
+            $create_errors[] = $e->getMessage() . ' for the password feild.';
+    }
+
+    if(empty($create_errors)){
+        $newPost = $dbc->prepare("INSERT INTO users(email, password) 
+        VALUES(:email,:password)");
+        $hashedPassword = password_hash(Input::getString('password'), PASSWORD_DEFAULT);
+        $newPost->bindValue(':email', $new_email, PDO::PARAM_STR);
+        $newPost->bindValue(':password', $hashedPassword, PDO::PARAM_STR);
+        $newPost->execute();
     }
 }
 
-if(Auth::check()){
-    header("Location: index.php");
-    exit();
+
+if(isset($_POST['email'])){
+    try {
+        if(Input::has('email')) {
+            $email = Input::getString('email');
+        }
+
+        // $email = (Input::has('email')) ? Input::getString('email') : null;
+    }catch(Exception $e){
+        $errors[] = $e->getMessage(). ' for the email feild.';
+    }
+
+    try {
+        if(Input::has('password')) {
+            $password = Input::getString('password');
+        }
+    }catch(Exception $e){
+            $errors[] = $e->getMessage() . ' for the password feild.';
+    }
+
+    if(empty($errors)){
+        Auth::attempt($email , $password, $dbc);
+    }
 }
+
+
+
 
 ?>
 
@@ -35,10 +72,10 @@ if(Auth::check()){
         <span id="site-name">Site Name</span>
 
         <div id="login-form">
-            <form>
-                <div id="username">
+            <form method="POST" action="welcome.php">
+                <div id="email">
                     </label>Email: </label><br>
-                    <input class="login" id="username" type="text" name="username" placeholder="Username" autofocus>
+                    <input class="login" id="input-email" type="text" name="email" placeholder="Email" autofocus>
                 </div>
                 <div id="password">
                     <label>Password: </label><br>
@@ -52,8 +89,8 @@ if(Auth::check()){
         <div id="sub-header">
             <h1>Sign Up!</h1>
         </div>
-        <form>
-            <input class="new-user" id="new-user-email" type="text" name="email" placeholder="Email"><br>
+        <form action="welcome.php" method="POST">
+            <input class="new-user" id="new-user-email" type="text" name="new-user-email" placeholder="Email"><br>
             <input class="new-user" id="new-user-password" type="password" name="password" placeholder="Password"><br>
             <button id="submit-button" type="submit">Submit</button>
         </form>
