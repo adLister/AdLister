@@ -76,7 +76,7 @@
                 </li>
                 
                 <li>
-                  <a href="#">
+                  <a href="?logout=true">
                   <i class="fa fa-sign-out fa-lg"></i> Log Out
                   </a>
                 </li>

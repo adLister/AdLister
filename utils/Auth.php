@@ -31,8 +31,6 @@ class Auth
     }
     static function logoutUser()
     {
-        $closedSessions = new Log();
-        $closedSessions->info($_SESSION['LOGGED_IN_USER'] . ' logged out.');
         $_SESSION = array();
         if(ini_get("session.use_cookies"))
         {
