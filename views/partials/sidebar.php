@@ -17,7 +17,7 @@
                   <a href="#"><i class="fa fa-gift fa-lg"></i> For Sale <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="forsale">
-                    <li><a href="#">Appliances</a></li>
+                    <li><a href="/categories/appliances.php">Appliances</a></li>
                     <li><a href="#">Arts & Crafts</a></li>
                     <li><a href="#">Auto Parts</a></li>
                     <li><a href="#">Baby & kid</a></li>
