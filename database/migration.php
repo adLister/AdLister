@@ -15,6 +15,7 @@ $addTable = "CREATE TABLE ads (
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     description VARCHAR(500) NOT NULL,
     image_url VARCHAR(200),
+    category VARCHAR(60) NOT NULL,
     PRIMARY KEY (id))";
 
 

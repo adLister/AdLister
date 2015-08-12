@@ -1,6 +1,7 @@
 <?php
 
 require_once '../bootstrap.php';
+
 $errors = array();
 if(!empty($_POST)){
     try { 
@@ -43,41 +44,41 @@ if(!empty($_POST)){
 $category = array(
 'Accounting & Finance',
 'Admin & Office',
+'Appliances',
 'Art/Media/Design',
+'Arts & Crafts',
+'Auto Parts',
+'Automotive',
+'Baby & kid',
 'Biotech & Science',
+'Books',
 'Business/Mgmt',
+'Cars & Trucks',
+'Computer & Technology',
+'Computers & Electronics',
 'Customer Service',
 'Education',
+'Event',
+'Furniture',
 'Human Resources',
 'Internet Engineers',
+'Legal',
 'Legal/Peralegal',
+'Lessons',
 'Medical/Health',
+'Music',
+'Pet',
 'Real Estate',
+'Realator',
 'Salon/Spa/Fitness',
 'Security',
 'Software/QA/DBA',
-'Technical Support',
-'Transport',
-'Writing/Editing',
-'Appliances',
-'Arts & Crafts',
-'Auto Parts',
-'Baby & kid',
-'Books',
-'Cars & Trucks',
-'Computers & Electronics',
-'Furniture',
-'Music',
 'Sports & Outdoors',
+'Technical Support',
 'Tools',
+'Transport',
 'Video Gaming',
-'Automotive',
-'Computer & Technology',
-'Event',
-'Legal',
-'Lessons',
-'Pet',
-'Realator');
+'Writing/Editing');
 ?>
 
 <html>
