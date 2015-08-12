@@ -2,7 +2,7 @@
 require_once '../bootstrap.php';
 
 $errors = array();
-$limit = 4;
+$limit = 5;
 $offset = (($_GET['page']-1) * $limit);
 
 if(empty($_GET)){
@@ -42,14 +42,18 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
     <?= require_once '../views/partials/sidebar.php'; ?>
 
     <h1>Most Recent</h1>
+    <!-- <hr> -->
     <div id="container_ads">
         <div class="row">
             <? foreach ($ads as $key => $value): ?>
                 <div id="most_recent" class="col-sm-8">
-                    <ul><strong><u><?= $value['title'];?></strong></u>
+                    <ul>
                         <p><img src="<?= $value['image_url'];?>" alt=""></p>
-                        <li>Date Created: <?= $value['date_created'];?></li>
-                        <li>Description: <?= $value['description'];?></li>
+                        <div id="post_details">
+                            <strong><u><?= $value['title'];?></strong>
+                            <li>Date Created: <?= $value['date_created'];?></li>
+                            <li>Description: <?= $value['description'];?></li>
+                        </div>
                     </ul>
                 </div>
             <? endforeach; ?>
