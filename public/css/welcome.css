@@ -4,6 +4,7 @@ body{
     background-image: url("/img/map.png");
     background-repeat: no-repeat;
     background-position: 60% 115%;
+    margin:0px !important;
 }
 
 input:focus{
@@ -32,7 +33,7 @@ input:focus{
     color: #E1FFFF;
 }
 
-#username {
+#email {
     float: left;
 }
 #password {
