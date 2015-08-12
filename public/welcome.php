@@ -69,7 +69,7 @@ if (Input::has('username') && Input::has('password')){
     }
 }
 
-if(Auth::check()){
+if(Auth::checkUser()){
     header("Location: index.php");
     exit();
 }
