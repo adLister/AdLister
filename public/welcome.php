@@ -53,9 +53,7 @@ if(Auth::check()){
             <h1>Sign Up!</h1>
         </div>
         <form>
-            <!-- </label>Email: </label><br> -->
             <input class="new-user" id="new-user-email" type="text" name="email" placeholder="Email"><br>
-            <!-- <label>Password: </label><br> -->
             <input class="new-user" id="new-user-password" type="password" name="password" placeholder="Password"><br>
             <button id="submit-button" type="submit">Submit</button>
         </form>

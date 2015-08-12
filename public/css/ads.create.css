@@ -1,0 +1,70 @@
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+input:focus, textarea:focus{
+    outline-color: #DFD7E2;
+}
+
+
+
+#header {
+	color: #0C7489;
+}
+
+#form {
+	width: 475px;
+	margin: auto;
+	padding: 25px;
+    background-color: #0C7489;
+    border: 1px solid #0C7489;
+    border-radius: 5px;
+}
+
+label {
+    color: #E1FFFF;
+    margin: 5px;
+}
+
+p {
+	font-size: 12px;
+	margin: 5px;
+    color: #E1FFFF;
+}
+
+textarea {
+	width: 400px;
+	margin: 10px;
+	border: 1px solid #0C7489;
+	color: #0C7489;
+	border-radius: 5px;
+}
+
+#category {
+	height: 40px;
+}
+
+#title {
+	width: 350px;
+	height: 25px;
+	border: 1px solid #0C7489;
+	color: #0C7489;
+	border-radius: 5px;
+}
+
+#exampleInputFile {
+	color: #E1FFFF;
+}
+
+.help-block {
+    color: #E1FFFF;
+}
+
+#submit {
+	margin-left: auto;
+	margin-right: auto;
+    border: 1px solid #0C7489;
+	color: #0C7489;
+	background-color: #fff;
+	border-radius: 5px;
+}
