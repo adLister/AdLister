@@ -1,9 +1,8 @@
 <?php
 require_once 'Model.php';
-
 class Ad extends Model
 {
-    protected static $table = 'ads';
+    public static $table = 'ads';
 
 	public static function find($id)
 	{
@@ -26,7 +25,7 @@ class Ad extends Model
     {
         self::dbConnect();
 
-        $query = 'SELECT * FROM ads WHERE search = :search';
+        $query = 'SELECT * FROM ads WHERE category = :search';
         $stmt = self::$dbc->prepare($query);
         $stmt->bindValue(':search', $search, PDO::PARAM_INT);
         $stmt->execute();
@@ -40,6 +39,18 @@ class Ad extends Model
             $instance->attributes = $result;
         }
         return $instance;
+    }
+
+    public static function limit($limit, $offset)
+    {
+        self::dbConnect();
+
+        $stmt = self::$dbc->prepare("SELECT * FROM ads LIMIT :cheese OFFSET :offset");
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->bindValue(':cheese', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        $ads= $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $ads;
     }
 
     // Get all rows from users table

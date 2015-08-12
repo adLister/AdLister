@@ -1,11 +1,11 @@
 <?php
 
-require_once '../database/db_connect.php';
+
 
 class Model
 {
 // An attributes property (array) that is not visible outside of the class
-	protected $attributes = [];
+	public $attributes = [];
     protected static $table;
     protected static $dbc;
 

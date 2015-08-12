@@ -22,13 +22,12 @@ if(!empty($_POST)){
     }
 
     if(!empty($_FILES['file'])) {
-       
         $filename = basename($_FILES['file']['name']);
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $filename)) {
+        $target = 'img/uploads/' . $filename;
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
             echo '<h1>Your new add post with image '. basename( $_FILES['file']['name']). ' has been uploaded.</h1>';
         }
     }
-    var_dump($_FILES['file']);
 
     if(empty($errors) && !empty($_FILES['file'])){
         $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, category) 
@@ -58,20 +57,20 @@ if(!empty($_POST)){
 }
 
 $category = array(
-'Accounting & Finance',
-'Admin & Office',
+'Accounting and Finance',
+'Admin and Office',
 'Appliances',
 'Art/Media/Design',
-'Arts & Crafts',
+'Arts and Crafts',
 'Auto Parts',
 'Automotive',
-'Baby & kid',
-'Biotech & Science',
+'Baby and kid',
+'Biotech and Science',
 'Books',
 'Business/Mgmt',
-'Cars & Trucks',
-'Computer & Technology',
-'Computers & Electronics',
+'Cars and Trucks',
+'Computer and Technology',
+'Computers and Electronics',
 'Customer Service',
 'Education',
 'Event',
@@ -89,7 +88,7 @@ $category = array(
 'Salon/Spa/Fitness',
 'Security',
 'Software/QA/DBA',
-'Sports & Outdoors',
+'Sports and Outdoors',
 'Technical Support',
 'Tools',
 'Transport',
