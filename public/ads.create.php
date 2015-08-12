@@ -20,64 +20,80 @@ if(!empty($_POST)){
             $errors[] = $e->getMessage();
     }
 
-    if($_FILES) {
-        $uploads_directory = 'img/uploads/';
-        $filename = $uploads_directory . basename($_FILES['file']['name']);
+    if(!empty($_FILES['file'])) {
+       
+        $filename = basename($_FILES['file']['name']);
         if (move_uploaded_file($_FILES['file']['tmp_name'], $filename)) {
             echo '<h1>Your new add post with image '. basename( $_FILES['file']['name']). ' has been uploaded.</h1>';
-        } else {
-            echo "Sorry, there was an error uploading your file.";
         }
     }
-    if(empty($errors)){
-        $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url,category) 
-        VALUES(:title,:description,:image_url,:category)");
+    var_dump($_FILES['file']);
+
+    if(empty($errors) && !empty($_FILES['file'])){
+        $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, category) 
+        VALUES(:title, :description, :image_url, :category)");
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
         $newPost->bindValue(':image_url', $filename, PDO::PARAM_STR);
         $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
         $newPost->execute();
+
+        sleep(3);
+        header('Location: index.php');
+        exit;
+    }else{
+        $newPost = $dbc->prepare("INSERT INTO ads(title, description, category) 
+        VALUES(:title, :description, :category)");
+        $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
+        $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
+        $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
+        $newPost->execute();
+
+        sleep(3);
+        header('Location: index.php');
+        exit;
     }
+
 }
 
 $category = array(
 'Accounting & Finance',
 'Admin & Office',
+'Appliances',
 'Art/Media/Design',
+'Arts & Crafts',
+'Auto Parts',
+'Automotive',
+'Baby & kid',
 'Biotech & Science',
+'Books',
 'Business/Mgmt',
+'Cars & Trucks',
+'Computer & Technology',
+'Computers & Electronics',
 'Customer Service',
 'Education',
+'Event',
+'Furniture',
 'Human Resources',
 'Internet Engineers',
+'Legal',
 'Legal/Peralegal',
+'Lessons',
 'Medical/Health',
+'Music',
+'Pet',
 'Real Estate',
+'Realator',
 'Salon/Spa/Fitness',
 'Security',
 'Software/QA/DBA',
-'Technical Support',
-'Transport',
-'Writing/Editing',
-'Appliances',
-'Arts & Crafts',
-'Auto Parts',
-'Baby & kid',
-'Books',
-'Cars & Trucks',
-'Computers & Electronics',
-'Furniture',
-'Music',
 'Sports & Outdoors',
+'Technical Support',
 'Tools',
+'Transport',
 'Video Gaming',
-'Automotive',
-'Computer & Technology',
-'Event',
-'Legal',
-'Lessons',
-'Pet',
-'Realator');
+'Writing/Editing');
 ?>
 
 <html>
@@ -114,7 +130,7 @@ $category = array(
 
                         <label for="exampleInputFile" name="image_url" id="image_url" accept='image/*'>File input:</label>
                         <input id="exampleInputFile" type="file" name="file">
-                        <p class="help-block">Accepts PNG, JPEG, JPG, and GIFS.</p>
+                        <p class="help-block">Accepts PNG, JPEG, and JPG.</p>
                     </div>
 
                     <label>*Description:</label><br>

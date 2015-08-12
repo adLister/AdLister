@@ -11,7 +11,6 @@ if(isset($_POST['new-user-email'])){
         if(Input::has('new-user-email')){
             $new_email = Input::getString('new-user-email');
         }
-        var_dump($new_email);
     }catch(Exception $e){
         $create_errors[] = $e->getMessage(). ' for the email feild.';
     }
