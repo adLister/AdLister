@@ -4,13 +4,6 @@ require_once '../bootstrap.php';
 session_start();
 $sessionId = session_id();
 
-if (Auth::checkUser()){
-    $username = Auth::currentUser();   
-} else{
-    header("Location: welcome.php");
-    exit();
-}
-
 if (Input::has('logout') && $_GET['logout'] == 'true'){
     Auth::logoutUser();
     header("Location: welcome.php");
