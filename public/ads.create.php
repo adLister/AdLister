@@ -27,12 +27,21 @@ if(!empty($_POST)){
     }
 
     if(!empty($_FILES['file'])) {
-        $filename = basename($_FILES['file']['name']);
-        $target = 'img/uploads/' . $filename;
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
-            echo '<h1>Your new add post with image '. basename( $_FILES['file']['name']). ' has been uploaded.</h1>';
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $fileContents = file_get_contents($_FILES["file"]["tmp_name"]);
+        $mimeType = $finfo->buffer($fileContents);
+        if ($mimeType != "image/png" && $mimeType != "image/gif" && $mimeType != "image/jpeg" && $mimeType != "image/jpg") {
+            echo "Img Error: Invalid File Type!";
+            exit;
+        }else{
+            $filename = basename($_FILES['file']['name']);
+            $target = 'img/uploads/' . $filename;
+            if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+                echo '<h1>Your new add post with image '. basename( $_FILES['file']['name']). ' has been uploaded.</h1>';
+            }
         }
     }
+
 
     if(empty($errors) && !empty($_FILES['file'])){
         $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, price, category) 
