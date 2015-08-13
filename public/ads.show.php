@@ -1,4 +1,6 @@
 <?php
+$id = Input::get('category');
+$ads = Ad::categorySeach($category);
 
 ?>
 
@@ -14,7 +16,7 @@
 </head>
 <body>
     <?= require_once '../views/partials/sidebar.php'; ?>
-    <?php if ($value['title'] == ) : ?>
+    <?php if ($value['id'] == ) : ?>
 	    <? foreach ($ads as $key => $value): ?>
 	        <div id="most_recent" class="col-sm-8">
 	            <ul>
