@@ -22,10 +22,18 @@ if(!empty($_POST)){
     }
 
     if(!empty($_FILES['file'])) {
-        $filename = basename($_FILES['file']['name']);
-        $target = 'img/uploads/' . $filename;
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
-            echo '<h1>Your new add post with image '. basename( $_FILES['file']['name']). ' has been uploaded.</h1>';
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $fileContents = file_get_contents($_FILES["file"]["tmp_name"]);
+        $mimeType = $finfo->buffer($fileContents);
+        if ($mimeType != "image/png" && $mimeType != "image/gif" && $mimeType != "image/jpeg" && $mimeType != "image/jpg") {
+            echo "Img Error: Invalid File Type!";
+            exit;
+        }else{
+            $filename = basename($_FILES['file']['name']);
+            $target = 'img/uploads/' . $filename;
+            if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+                echo '<h1>Your new add post with image '. basename( $_FILES['file']['name']). ' has been uploaded.</h1>';
+            }
         }
     }
 
@@ -130,7 +138,7 @@ $category = array(
 
                         <label for="exampleInputFile" name="image_url" id="image_url" accept='image/*'>File input:</label>
                         <input id="exampleInputFile" type="file" name="file">
-                        <p class="help-block">Accepts PNG, JPEG, and JPG.</p>
+                        <p class="help-block">Accepts PNG, JPEG, GIFS, and JPG.</p>
                     </div>
 
                     <label>*Description:</label><br>
