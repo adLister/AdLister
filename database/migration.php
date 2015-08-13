@@ -16,6 +16,7 @@ $addTable = "CREATE TABLE ads (
     description VARCHAR(500) NOT NULL,
     image_url VARCHAR(200),
     category VARCHAR(60) NOT NULL,
+    price INT(10) NOT NULL,
     PRIMARY KEY (id))";
 
 

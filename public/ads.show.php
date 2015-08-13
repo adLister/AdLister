@@ -22,6 +22,7 @@
 	                <div id="post_details">
 	                    <strong><u><?= $value['title'];?></strong>
 	                    <li>Date Created: <?= $value['date_created'];?></li>
+                        <li>Date Created: <?= $value['price'];?></li>
 	                    <li>Description: <?= $value['description'];?></li>
 	                </div>
 	            </ul>
