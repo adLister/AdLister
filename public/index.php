@@ -18,7 +18,7 @@ if (Input::has('logout') && $_GET['logout'] == 'true'){
 }
 
 $errors = array();
-$limit = 5;
+$limit = 10;
 $offset = (($_GET['page']-1) * $limit);
 
 if(empty($_GET)){
@@ -58,25 +58,20 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
     <hr>
     <div>
     <?= require_once '../views/partials/sidebar.php'; ?>
-
-    <!-- <hr> -->
     <div id="container_ads">
-        <div class="row">
+        <div class="row potatoes">
             <? foreach ($ads as $key => $value): ?>
-                <div  class="col-sm-8">
-                    <div class="row">
-                        <?php if($value['image_url']):?>
-                        <div class="col-sm-5"><img src="img/uploads/<?= $value['image_url'];?>" alt=""></div>
-                        <?php endif; ?>
-                        <div id="post_details" class="col-sm-6">
-                            <strong><u><?= $value['title'];?></strong>
+                <div  class="col-sm-12">
+                    <a href="/ads.show.php?id=<?= $value['id'] ?>"><div class="row">
+                        <div id="post_details" class="col-sm-6 .col-sm-offset-4">
+                           <strong><u><?= $value['title'];?></strong>
                             <ul>
                                 <li>Date Created: <?= $value['date_created'];?></li>
                                 <li>Price: $<?= $value['price'];?></li>
                                 <li>Description: <?= $value['description'];?></li>
                             </ul>
                         </div>
-                    </div><br>
+                    </div><br></a>
                 </div>
             <? endforeach; ?>
         </div>

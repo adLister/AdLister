@@ -16,7 +16,7 @@ hr{
 }
 
 #post-details {
-    float: left;
+    float: right;
 }
 
 #container_ads{
@@ -26,10 +26,11 @@ hr{
 }
 
 #container_ads{
-    margin-left: 350px;
+    margin-left: auto;
     margin-right: auto;
-    width: 100%;
+    width: 800px;
 }
+
 .pager li>a, .pager li>span {
     display: inline-block;
     padding: 5px 14px;
