@@ -2,6 +2,16 @@
 
 require_once '../bootstrap.php';
 
+session_start();
+$sessionId = session_id();
+
+if (Auth::checkUser()){
+    $username = Auth::currentUser();   
+} else{
+    header("Location: welcome.php");
+    exit();
+}
+
 $errors = array();
 if(!empty($_POST)){
     try { 
