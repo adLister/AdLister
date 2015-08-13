@@ -33,7 +33,7 @@ class Input
         }
     }
 
-    public static function getString($key, $min = 2, $max = 30)
+    public static function getString($key, $min = 2, $max = 500)
     {
         $value = trim(static::get($key));
         // $isString = settype($value, 'string');
