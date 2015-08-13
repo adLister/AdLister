@@ -54,7 +54,8 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
 </head>
 
 <body>
-    <h1><u>Most Recent</u></h1>
+    <h1>Most Recent</h1>
+    <hr>
     <div>
     <?= require_once '../views/partials/sidebar.php'; ?>
 
@@ -62,18 +63,20 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
     <div id="container_ads">
         <div class="row">
             <? foreach ($ads as $key => $value): ?>
-                <div id="most_recent" class="col-sm-8">
-                    <ul>
+                <div  class="col-sm-8">
+                    <div class="row">
                         <?php if($value['image_url']):?>
-                            <p><img src="img/uploads/<?= $value['image_url'];?>" alt=""></p>
-                        <?php endif; ?><br>
-                        <div id="post_details">
+                        <div class="col-sm-5"><img src="img/uploads/<?= $value['image_url'];?>" alt=""></div>
+                        <?php endif; ?>
+                        <div id="post_details" class="col-sm-6">
                             <strong><u><?= $value['title'];?></strong>
-                            <li>Date Created: <?= $value['date_created'];?></li>
-                            <li>Price: $<?= $value['price'];?></li>
-                            <li>Description: <?= $value['description'];?></li>
+                            <ul>
+                                <li>Date Created: <?= $value['date_created'];?></li>
+                                <li>Price: $<?= $value['price'];?></li>
+                                <li>Description: <?= $value['description'];?></li>
+                            </ul>
                         </div>
-                    </ul>
+                    </div><br>
                 </div>
             <? endforeach; ?>
         </div>
