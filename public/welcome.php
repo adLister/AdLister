@@ -84,7 +84,7 @@ if(Auth::checkUser()){
 </head>
 <body>
     <div id="header">
-        <span id="site-name">Site Name</span>
+        <span id="site-name">WeGotIt</span>
 
         <div id="login-form">
             <form method="POST" action="welcome.php">
