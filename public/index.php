@@ -62,16 +62,21 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
         <div class="row potatoes">
             <? foreach ($ads as $key => $value): ?>
                 <div  class="col-sm-12">
-                    <a href="/ads.show.php?id=<?= $value['id'] ?>"><div class="row">
+                    <div class="row">
                         <div id="post_details" class="col-sm-6 .col-sm-offset-4">
+                        <a href="/ads.show.php?id=<?= $value['id'] ?>">
                            <strong><u><?= $value['title'];?></strong>
                             <ul>
                                 <li>Date Created: <?= $value['date_created'];?></li>
                                 <li>Price: $<?= $value['price'];?></li>
                                 <li>Description: <?= $value['description'];?></li>
+                                </a>
+                                <?php if($value['image_url']):?>
+                                <li>This add includes Photos</li>
+                                <?php endif; ?>
                             </ul>
                         </div>
-                    </div><br></a>
+                    </div><br>
                 </div>
             <? endforeach; ?>
         </div>
