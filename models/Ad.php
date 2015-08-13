@@ -21,11 +21,31 @@ class Ad extends Model
         return $instance;
 	}
 
-    public static function categorySeach($search)
+    public static function categorySearch($search)
     {
         self::dbConnect();
 
         $query = 'SELECT * FROM ads WHERE category = :search';
+        $stmt = self::$dbc->prepare($query);
+        $stmt->bindValue(':search', $search, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $instance = null;
+        if ($result)
+        {
+            $instance = new static;
+            $instance->attributes = $result;
+        }
+        return $instance;
+    }
+
+    public static function idSearch($search)
+    {
+        self::dbConnect();
+
+        $query = 'SELECT * FROM ads WHERE id = :search';
         $stmt = self::$dbc->prepare($query);
         $stmt->bindValue(':search', $search, PDO::PARAM_INT);
         $stmt->execute();

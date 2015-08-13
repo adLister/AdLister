@@ -25,7 +25,7 @@ if(empty($_GET)){
 }
 
 $category = str_replace('-', ' ', Input::get('category'));
-$ads = Ad::categorySeach($category);
+$ads = Ad::categorySearch($category);
 
 // $errors = array();
 // $limit = 5;
