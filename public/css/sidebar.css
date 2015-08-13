@@ -10,12 +10,13 @@
   height: 100%;
   color: #E1FFFF;
 }
-.nav-side-menu .brand {
+.nav-side-menu .brand{
   background-color: #13505B;
+  color: #E1FFFF !important;
   line-height: 50px;
   display: block;
   text-align: center;
-  font-size: 14px;
+  font-size: 20px;
 }
 .nav-side-menu .toggle-btn {
   display: none;

@@ -70,7 +70,7 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
                         <div id="post_details">
                             <strong><u><?= $value['title'];?></strong>
                             <li>Date Created: <?= $value['date_created'];?></li>
-                            <li>Date Created: <?= $value['price'];?></li>
+                            <li>Price: $<?= $value['price'];?></li>
                             <li>Description: <?= $value['description'];?></li>
                         </div>
                     </ul>

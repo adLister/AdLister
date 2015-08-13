@@ -27,29 +27,29 @@ if(empty($_GET)){
 $category = str_replace('-', ' ', Input::get('category'));
 $ads = Ad::categorySeach($category);
 
-$errors = array();
-$limit = 5;
-$offset = (($_GET['page']-1) * $limit);
+// $errors = array();
+// $limit = 5;
+// $offset = (($_GET['page']-1) * $limit);
 
-if(empty($_GET)){
-    header("Location: categories.php?category=$category/page=1");
-    exit();
-}
+// if(empty($_GET)){
+//     header("Location: categories.php?category=$category&page=1");
+//     exit();
+// }
 
-$stmt = $dbc->prepare("SELECT * FROM ads LIMIT :limit OFFSET :offset");
-$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-$stmt->execute();
-$ads= $stmt->fetchAll(PDO::FETCH_ASSOC);
+// $stmt = $dbc->prepare("SELECT * FROM ads LIMIT :limit OFFSET :offset");
+// $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+// $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+// $stmt->execute();
+// $ads= $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$count = $dbc->query('SELECT count(*) FROM ads');
-$stmt1 = $count->fetchColumn();
-$maxpage = ceil($stmt1 / $limit);
+// $count = $dbc->query('SELECT count(*) FROM ads');
+// $stmt1 = $count->fetchColumn();
+// $maxpage = ceil($stmt1 / $limit);
 
-if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){    
-    header("location: ?page=$maxpage");
-    exit();
-}
+// if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){    
+//     header("location: ?page=$maxpage");
+//     exit();
+// }
 ?>
 <html>
 <head>
@@ -81,7 +81,7 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
                             <div id="post_details">
                                 <strong><u><?= $value['title'];?></strong>
                                 <li>Date Created: <?= $value['date_created'];?></li>
-                                <li>Date Created: <?= $value['price'];?></li>
+                                <li>Price: $<?= $value['price'];?></li>
                                 <li>Description: <?= $value['description'];?></li>
                             </div>
                         </ul>
@@ -89,7 +89,7 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
                 <? endif; ?>
             <? endforeach; ?>
         </div>
-        <div>
+<!--         <div>
             <ul class="pager">
                 <?php if($_GET['page'] >= 2): ?>    
                     <li id="previous_page" class="pager-buttons"><a href='index.php?page=<?= $_GET['page'] - 1 ?>'>Previous Page</a></li>
@@ -99,7 +99,7 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
                     <li id="next_page" class="pager-buttons"><a href='index.php?page=<?= $_GET['page'] + 1 ?>'>Next Page</a></li>
                 <?php endif ?>
             </ul>
-        </div>
+        </div> -->
     </div>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

@@ -35,7 +35,7 @@ class Input
 
     public static function getString($key, $min = 2, $max = 500)
     {
-        $value = trim(static::get($key));
+        $value = self::escape(trim(static::get($key)));
         // $isString = settype($value, 'string');
         if(!isset($value)){
              throw new Exception("$key must not be a null!");
@@ -53,7 +53,7 @@ class Input
 
     public static function getNumber($key ,$min = 2, $max = 30)
     {
-        $value = str_replace(',', '', static::get($key));
+        $value = self::escape(str_replace(',', '', static::get($key)));
 
         if(!isset($value)){
             throw new Exception("$key must not be a null!");
