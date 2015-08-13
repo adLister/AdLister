@@ -1,5 +1,6 @@
 body{
     background-color: #DFD7E2;
+    font-family: Helvetica, sans-serif;
 }
 
 h1 {
@@ -23,11 +24,6 @@ h1 {
 }
 
 /*pager buttons*/
-.pager-buttons {
-    background-color: #0C7489;
-    color: ;
-}
-
 #next_page{
     float: right;
 }

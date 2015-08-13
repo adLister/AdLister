@@ -54,9 +54,9 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
 </head>
 
 <body>
+    <h1><u>Most Recent</u></h1>
     <div>
     <?= require_once '../views/partials/sidebar.php'; ?>
-    <h1>Most Recent</h1>
 
     <!-- <hr> -->
     <div id="container_ads">
@@ -66,7 +66,7 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
                     <ul>
                         <?php if($value['image_url']):?>
                             <p><img src="img/uploads/<?= $value['image_url'];?>" alt=""></p>
-                        <?php endif; ?>
+                        <?php endif; ?><br>
                         <div id="post_details">
                             <strong><u><?= $value['title'];?></strong>
                             <li>Date Created: <?= $value['date_created'];?></li>
