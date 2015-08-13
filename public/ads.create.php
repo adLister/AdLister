@@ -16,33 +16,31 @@ if(!empty($_POST)){
             $errors[] = $e->getMessage();
     }
     try { 
+        Input::getNumber('price');
+    }catch(Exception $e){
+            $errors[] = $e->getMessage();
+    }
+    try { 
         Input::getString('category');
     }catch(Exception $e){
             $errors[] = $e->getMessage();
     }
 
     if(!empty($_FILES['file'])) {
-        $finfo = new finfo(FILEINFO_MIME_TYPE);
-        $fileContents = file_get_contents($_FILES["file"]["tmp_name"]);
-        $mimeType = $finfo->buffer($fileContents);
-        if ($mimeType != "image/png" && $mimeType != "image/gif" && $mimeType != "image/jpeg" && $mimeType != "image/jpg") {
-            echo "Img Error: Invalid File Type!";
-            exit;
-        }else{
-            $filename = basename($_FILES['file']['name']);
-            $target = 'img/uploads/' . $filename;
-            if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
-                echo '<h1>Your new add post with image '. basename( $_FILES['file']['name']). ' has been uploaded.</h1>';
-            }
+        $filename = basename($_FILES['file']['name']);
+        $target = 'img/uploads/' . $filename;
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+            echo '<h1>Your new add post with image '. basename( $_FILES['file']['name']). ' has been uploaded.</h1>';
         }
     }
 
     if(empty($errors) && !empty($_FILES['file'])){
-        $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, category) 
-        VALUES(:title, :description, :image_url, :category)");
+        $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, price, category) 
+        VALUES(:title, :description, :image_url, :price, :category)");
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
         $newPost->bindValue(':image_url', $filename, PDO::PARAM_STR);
+        $newPost->bindValue(':price', Input::getNumber('price'), PDO::PARAM_STR);
         $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
         $newPost->execute();
 
@@ -50,10 +48,11 @@ if(!empty($_POST)){
         header('Location: index.php');
         exit;
     }else{
-        $newPost = $dbc->prepare("INSERT INTO ads(title, description, category) 
-        VALUES(:title, :description, :category)");
+        $newPost = $dbc->prepare("INSERT INTO ads(title, description, price, category) 
+        VALUES(:title, :description, :price, :category)");
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
+        $newPost->bindValue(':price', Input::getNumber('price'), PDO::PARAM_STR);
         $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
         $newPost->execute();
 
@@ -138,7 +137,11 @@ $category = array(
 
                         <label for="exampleInputFile" name="image_url" id="image_url" accept='image/*'>File input:</label>
                         <input id="exampleInputFile" type="file" name="file">
-                        <p class="help-block">Accepts PNG, JPEG, GIFS, and JPG.</p>
+                        <p class="help-block">Accepts PNG, JPEG, and JPG.</p>
+
+                        
+                    <label>*Price:</label>
+                    <input id="price" type="number" placeholder="Price" name="price" value="<?php if(!empty($_POST['price'])){ echo $_POST['price'];}?>">
                     </div>
 
                     <label>*Description:</label><br>

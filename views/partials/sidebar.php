@@ -19,9 +19,9 @@
                     <li><a href="/categories.php?category=Appliances">Appliances</a></li>
                     <li><a href="/categories.php?category=Arts-and-Crafts">Arts and Crafts</a></li>
                     <li><a href="/categories.php?category=Auto-Parts">Auto Parts</a></li>
-                    <li><a href="/categories.php?category=Baby-and-Kid">Baby and kid</a></li>
+                    <li><a href="/categories.php?category=Baby-and-Kid">Baby and Kid</a></li>
                     <li><a href="/categories.php?category=Books">Books</a></li>
-                    <li><a href="/categories.php?category=Cars">Cars and Trucks</a></li>
+                    <li><a href="/categories.php?category=Cars-and-Trucks">Cars and Trucks</a></li>
                     <li><a href="/categories.php?category=Computers-and-Electronics">Computers and Electronics</a></li>
                     <li><a href="/categories.php?category=Furniture">Furniture</a></li>
                     <li><a href="/categories.php?category=Music">Music</a></li>

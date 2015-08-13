@@ -22,7 +22,7 @@ $limit = 5;
 $offset = (($_GET['page']-1) * $limit);
 
 if(empty($_GET)){
-    header('location: ?page=1');
+    header("Location: ?page=1");
     exit();
 }
 
@@ -70,6 +70,7 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
                         <div id="post_details">
                             <strong><u><?= $value['title'];?></strong>
                             <li>Date Created: <?= $value['date_created'];?></li>
+                            <li>Date Created: <?= $value['price'];?></li>
                             <li>Description: <?= $value['description'];?></li>
                         </div>
                     </ul>
