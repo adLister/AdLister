@@ -16,6 +16,11 @@ if(!empty($_POST)){
             $errors[] = $e->getMessage();
     }
     try { 
+        Input::getNumber('price');
+    }catch(Exception $e){
+            $errors[] = $e->getMessage();
+    }
+    try { 
         Input::getString('category');
     }catch(Exception $e){
             $errors[] = $e->getMessage();
@@ -30,11 +35,12 @@ if(!empty($_POST)){
     }
 
     if(empty($errors) && !empty($_FILES['file'])){
-        $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, category) 
-        VALUES(:title, :description, :image_url, :category)");
+        $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, price, category) 
+        VALUES(:title, :description, :image_url, :price, :category)");
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
         $newPost->bindValue(':image_url', $filename, PDO::PARAM_STR);
+        $newPost->bindValue(':price', Input::getNumber('price'), PDO::PARAM_STR);
         $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
         $newPost->execute();
 
@@ -42,10 +48,11 @@ if(!empty($_POST)){
         header('Location: index.php');
         exit;
     }else{
-        $newPost = $dbc->prepare("INSERT INTO ads(title, description, category) 
-        VALUES(:title, :description, :category)");
+        $newPost = $dbc->prepare("INSERT INTO ads(title, description, price, category) 
+        VALUES(:title, :description, :price, :category)");
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
+        $newPost->bindValue(':price', Input::getNumber('price'), PDO::PARAM_STR);
         $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
         $newPost->execute();
 
@@ -131,6 +138,10 @@ $category = array(
                         <label for="exampleInputFile" name="image_url" id="image_url" accept='image/*'>File input:</label>
                         <input id="exampleInputFile" type="file" name="file">
                         <p class="help-block">Accepts PNG, JPEG, and JPG.</p>
+
+                        
+                    <label>*Price:</label>
+                    <input id="price" type="number" placeholder="Price" name="price" value="<?php if(!empty($_POST['price'])){ echo $_POST['price'];}?>">
                     </div>
 
                     <label>*Description:</label><br>

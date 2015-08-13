@@ -43,7 +43,7 @@ textarea {
 	height: 40px;
 }
 
-#title {
+#title, #price {
 	width: 350px;
 	height: 25px;
 	border: 1px solid #0C7489;
