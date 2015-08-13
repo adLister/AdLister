@@ -4,13 +4,6 @@ require_once '../bootstrap.php';
 session_start();
 $sessionId = session_id();
 
-if (Auth::checkUser()){
-    $username = Auth::currentUser();   
-} else{
-    header("Location: welcome.php");
-    exit();
-}
-
 if (Input::has('logout') && $_GET['logout'] == 'true'){
     Auth::logoutUser();
     header("Location: welcome.php");
@@ -56,10 +49,12 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
 <body>
     <h1>Most Recent</h1>
     <hr>
-    <div>
-    <?= require_once '../views/partials/sidebar.php'; ?>
-    <div id="container_ads">
-        <div class="row potatoes">
+    <div class="row">
+        <div class="col-md-3">
+            <?= require_once '../views/partials/sidebar.php'; ?>
+        </div>
+    <div id="container_ads" class="col-md-9">
+        <div>
             <? foreach ($ads as $key => $value): ?>
                 <div  class="col-sm-12">
                     <div class="row">
