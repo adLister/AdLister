@@ -32,7 +32,7 @@ $ads = Ad::categorySeach($category);
 // $offset = (($_GET['page']-1) * $limit);
 
 // if(empty($_GET)){
-//     header("Location: categories.php?category=$category/page=1");
+//     header("Location: categories.php?category=$category&page=1");
 //     exit();
 // }
 
@@ -89,7 +89,7 @@ $ads = Ad::categorySeach($category);
                 <? endif; ?>
             <? endforeach; ?>
         </div>
-        <!-- <div>
+<!--         <div>
             <ul class="pager">
                 <?php if($_GET['page'] >= 2): ?>    
                     <li id="previous_page" class="pager-buttons"><a href='index.php?page=<?= $_GET['page'] - 1 ?>'>Previous Page</a></li>

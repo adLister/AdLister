@@ -1,16 +1,16 @@
 <div class="nav-side-menu">
-    <div class="brand">WeGotIt</div>
+    <a href = "index.php"><div class="brand">WeGotIt</div></a>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
   
         <div class="menu-list">
   
             <ul id="menu-content" class="menu-content collapse out">
 
-                <li>
-                  <a href="ads.create.php">
-                  <i class="fa fa-plus fa-lg"></i> Add Post
-                  </a>
-                </li>
+                <a href="ads.create.php" >
+                  <li class="category" >
+                    <i class="fa fa-plus fa-lg "></i> Add Post
+                  </li>
+                </a>
 
                 <li  data-toggle="collapse" data-target="#forsale" class="collapsed">
                   <a href="#"><i class="fa fa-gift fa-lg"></i> For Sale <span class="arrow"></span></a>
@@ -68,17 +68,17 @@
                   <li><a href="/categories.php?category=Writing/Editing">Writing/Editing</a></li>
                 </ul>
 
-                <li>
-                  <a href="#">
-                  <i class="fa fa-user fa-lg"></i> My Account
-                  </a>
-                </li>
+                <a href="#">
+                  <li class="category" >
+                    <i class="fa fa-user fa-lg"></i> My Account
+                  </li>
+                </a>
                 
-                <li>
-                  <a href="?logout=true">
-                  <i class="fa fa-sign-out fa-lg"></i> Log Out
-                  </a>
-                </li>
+                <a href="?logout=true">
+                  <li class="category" >
+                    <i class="fa fa-sign-out fa-lg"></i> Log Out
+                  </li>
+                </a>
             </ul>
      </div>
 </div>
