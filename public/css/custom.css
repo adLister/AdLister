@@ -3,7 +3,11 @@ body{
 }
 
 h1 {
-    color: #000;
+    color: #13505B;
+}
+
+#post-details {
+    float: right;
 }
 
 #container_ads{
