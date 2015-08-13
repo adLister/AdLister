@@ -24,7 +24,8 @@ if(empty($_GET)){
    $_GET['page'] = '1';
 }
 
-$category = Input::get('category');
+$category = str_replace('-', ' ', Input::get('category'));
+// str_replace('-', ' ', $category);
 $ads = Ad::categorySeach($category);
 
 
@@ -45,7 +46,6 @@ $ads = Ad::categorySeach($category);
     <div>
     <?= require_once '../views/partials/sidebar.php'; ?>
 
-    <h1>Most Recent</h1>
     <!-- <hr> -->
     <div id="container_ads">
         <div class="row">
@@ -53,7 +53,10 @@ $ads = Ad::categorySeach($category);
             <?php if($value['category'] == "$category"):?>
                 <div id="most_recent" class="col-sm-8">
                     <ul>
-                        <?php if($value['image_url']):?><p><img src="../img/uploads/<?= $value['image_url'];?>" alt=""></p><?php endif; ?>
+                        <?php if($value['image_url']):?>
+                            <p><img src="../img/uploads/<?= $value['image_url'];?>" alt=""></p>
+                        <?php endif; ?>
+                        
                         <div id="post_details">
                             <strong><u><?= $value['title'];?></strong>
                             <li>Date Created: <?= $value['date_created'];?></li>
