@@ -46,7 +46,7 @@ $userPosts = Ad::paginateHome(10,(($page-1) * 10));
         <div class="col-md-3">
         <?= require_once '../views/partials/sidebar.php'; ?>
         </div>
-        <div id="container_ads" class="col-md-9">
+        <div id="con tainer_ads" class="col-md-9">
             <div>
                 <?php 
                     $max = $userPosts->attributes['maxpage'];
