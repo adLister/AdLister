@@ -13,7 +13,16 @@ h1{
     height: ;
     text-align: right;
     padding: 0 0 5px 0;
-    /*float: right;*/
+    margin-right:auto;
+    margin-left: auto;
+}
+
+#header {
+    color: #13505B;
+    width: 560px;
+    height: ;
+    text-align: right;
+    padding: 0 0 5px 0;
     margin-right:auto;
     margin-left: auto;
 }
