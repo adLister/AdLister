@@ -12,6 +12,12 @@ if (Auth::checkUser()){
     exit();
 }
 
+if (Input::has('logout') && $_GET['logout'] == 'true'){
+    Auth::logoutUser();
+    header("Location: welcome.php");
+    exit(); 
+}
+
 $errors = array();
 if(!empty($_POST)){
     try { 
@@ -143,7 +149,7 @@ $category = array(
         <div class="col-md-3">
             <?= require_once '../views/partials/sidebar.php'; ?>
         </div>
-<div id="errors">
+        <div id="errors">
             <?php foreach ($errors as $error):?>
                 <p><?= $error ?></p>
             <?php endforeach ?>

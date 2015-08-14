@@ -12,6 +12,12 @@ if (Auth::checkUser()){
     exit();
 }
 
+if (Input::has('logout') && $_GET['logout'] == 'true'){
+    Auth::logoutUser();
+    header("Location: welcome.php");
+    exit(); 
+}
+
 $errors = array();
 if(!empty($_POST)){
     try { 
