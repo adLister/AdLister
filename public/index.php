@@ -59,7 +59,7 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
                     <div class="row">
                         <div id="post_details" class="col-sm-6 .col-sm-offset-4">
                         <a href="/ads.show.php?id=<?= $value['id'] ?>">
-                           <strong><u><?= $value['title'];?></strong>
+                           <strong><?= $value['title'];?></strong>
                             <ul>
                                 <li>Date Created: <?= $value['date_created'];?></li>
                                 <li>Price: $<?= $value['price'];?></li>
