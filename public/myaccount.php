@@ -19,15 +19,18 @@ if (Input::has('logout') && $_GET['logout'] == 'true'){
 }
 
 if(empty($_GET)){
-   $_GET['page'] = '1';
+   $page = '1';
+}else{
+	$page=$_GET['page'];
 }
+
 if(!empty($_GET['delete'])){
   Ad::delete($_GET['id']);
 }
 $user = $_SESSION['email'];
 $userPosts = Ad::userSearch($user);
 
-$userPosts = Ad::paginateUserAds(5,(($_GET['page']-1) * 5),$user);
+$userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
 ?>
 <html>
 <head>
@@ -46,7 +49,7 @@ $userPosts = Ad::paginateUserAds(5,(($_GET['page']-1) * 5),$user);
     <hr>
     <div class="row">
         <div class="col-md-3">
-            <?= require_once '../views/partials/sidebar.php'; ?>
+           <?= require_once '../views/partials/sidebar.php'; ?>
         </div>
         <div id="container_ads" class="col-md-9">
             <div>
@@ -66,8 +69,8 @@ $userPosts = Ad::paginateUserAds(5,(($_GET['page']-1) * 5),$user);
                                         <?php endif; ?>
                                     </div>
                                 </ul>
-                                <button class="btn btn-info"><a href="ads.edit.php?id=<?= $value['id'] ?>">Edit Post</a></button>
-                                <button class="btn btn-warning"><a href="myaccount.php?delete=y&id=<?= $value['id'] ?>">Delete Post</a></button>
+                                <a class="btn btn-info" href="ads.edit.php?id=<?= $value['id'] ?>">Edit Post</a>	
+                                <a class="btn btn-warning" href="myaccount.php?delete=y&id=<?= $value['id'] ?>">Delete Post</a>
                             </div><br>
                         </div>
                     <? endif; ?>
@@ -75,12 +78,12 @@ $userPosts = Ad::paginateUserAds(5,(($_GET['page']-1) * 5),$user);
             </div>
        <div>
                 <ul class="pager">
-                    <?php if($_GET['page'] >= 2): ?>    
-                        <li id="previous_page" class="pager-buttons"><a href='index.php?page=<?= $_GET['page'] - 1 ?>'>Previous Page</a></li>
+                    <?php if($page >= 2): ?>    
+                        <li id="previous_page" class="pager-buttons"><a href='myaccount.php?page=<?= $page - 1 ?>'>Previous Page</a></li>
                     <?php endif ?>
                     
-                    <?php if($_GET['page'] != $userPosts->attributes['maxpage']):?>  
-                        <li id="next_page" class="pager-buttons"><a href='index.php?page=<?= $_GET['page'] + 1 ?>'>Next Page</a></li>
+                    <?php if($page != $userPosts->attributes['maxpage']):?>  
+                        <li id="next_page" class="pager-buttons"><a href='myaccount.php?page=<?= $page + 1 ?>'>Next Page</a></li>
                     <?php endif ?>
                 </ul>
             </div>
