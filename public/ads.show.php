@@ -17,28 +17,33 @@ $ads = Ad::idSearch($id);
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-    <?= require_once '../views/partials/sidebar.php';?>
-    <div id="container_ads">
-        <div class="row">
-            <? foreach ($ads->attributes as $key => $value): ?>
-                <?php if($value['id'] == "$id"):?>
-                    <div id="most_recent">
-                        <ul>
-                            <?php if($value['image_url']):?>
-                                <p><img src="../img/uploads/<?= $value['image_url'];?>" alt=""></p>
-                            <?php endif; ?>
-                            <br>
-                            <div id="post_details">
-                                <strong><u><?= $value['title'];?></strong>
-                                <li>Date Created: <?= $value['date_created'];?></li>
-                                <li>Price: $<?= $value['price'];?></li>
-                                <li>Description: <?= $value['description'];?></li>
-                            </div>
-                        </ul>
-                    </div>
-                <? endif; ?>
-            <? endforeach; ?>
-        </div>
+	<div class="row">
+		<div class="col-md-3">
+	    	<?= require_once '../views/partials/sidebar.php';?>
+	    </div>
+	    <div id="container_ads" class="col-md-9">
+	        <div class="row">
+	            <? foreach ($ads->attributes as $key => $value): ?>
+	                <?php if($value['id'] == "$id"):?>
+	                    <div id="most_recent">
+	                        <ul>
+	                            <?php if($value['image_url']):?>
+	                                <p><img src="../img/uploads/<?= $value['image_url'];?>" alt=""></p>
+	                            <?php endif; ?>
+	                            <br>
+	                            <div id="post_details">
+	                                <strong><u><?= $value['title'];?></strong>
+	                                <li>Date Created: <?= $value['date_created'];?></li>
+	                                <li>Price: $<?= $value['price'];?></li>
+	                                <li>Description: <?= $value['description'];?></li>
+	                            </div>
+	                        </ul>
+	                    </div>
+	                <? endif; ?>
+	            <? endforeach; ?>
+	        </div>
+	    </div>
+	</div>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>

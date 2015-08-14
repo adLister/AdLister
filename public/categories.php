@@ -64,42 +64,44 @@ $ads = Ad::categorySearch($category);
 </head>
 
 <body>
-    <div>
-    <?= require_once '../views/partials/sidebar.php'; ?>
-
-    <!-- <hr> -->
-    <div id="container_ads">
-        <div class="row">
-            <? foreach ($ads->attributes as $key => $value): ?>
-                <?php if($value['category'] == "$category"):?>
-                    <div id="most_recent" class="col-sm-8">
-                        <ul>
-                            <?php if($value['image_url']):?>
-                                <p><img src="../img/uploads/<?= $value['image_url'];?>" alt=""></p>
-                            <?php endif; ?>
-                            
-                            <div id="post_details">
-                                <strong><u><?= $value['title'];?></strong>
-                                <li>Date Created: <?= $value['date_created'];?></li>
-                                <li>Price: $<?= $value['price'];?></li>
-                                <li>Description: <?= $value['description'];?></li>
-                            </div>
-                        </ul>
-                    </div>
-                <? endif; ?>
-            <? endforeach; ?>
+    <div class="row">
+        <div class="col-md-3">
+            <?= require_once '../views/partials/sidebar.php'; ?>
         </div>
-<!--         <div>
-            <ul class="pager">
-                <?php if($_GET['page'] >= 2): ?>    
-                    <li id="previous_page" class="pager-buttons"><a href='index.php?page=<?= $_GET['page'] - 1 ?>'>Previous Page</a></li>
-                <?php endif ?>
-                
-                <?php if($_GET['page'] != $maxpage):?>  
-                    <li id="next_page" class="pager-buttons"><a href='index.php?page=<?= $_GET['page'] + 1 ?>'>Next Page</a></li>
-                <?php endif ?>
-            </ul>
-        </div> -->
+        <div id="container_ads" class="col-md-9">
+            <div class="row">
+                <? foreach ($ads->attributes as $key => $value): ?>
+                    <?php if($value['category'] == "$category"):?>
+                        <div id="most_recent">
+                            <a href="/ads.show.php?id=<?= $value['id'] ?>">
+                            <ul>
+                                <?php if($value['image_url']):?>
+                                    <p><img src="../img/uploads/<?= $value['image_url'];?>" alt=""></p>
+                                <?php endif; ?>
+                                
+                                <div id="post_details">
+                                    <strong><u><?= $value['title'];?></strong>
+                                    <li>Date Created: <?= $value['date_created'];?></li>
+                                    <li>Price: $<?= $value['price'];?></li>
+                                    <li>Description: <?= $value['description'];?></li>
+                                </div>
+                            </ul>
+                        </div>
+                    <? endif; ?>
+                <? endforeach; ?>
+            </div>
+    <!--    <div>
+                <ul class="pager">
+                    <?php if($_GET['page'] >= 2): ?>    
+                        <li id="previous_page" class="pager-buttons"><a href='index.php?page=<?= $_GET['page'] - 1 ?>'>Previous Page</a></li>
+                    <?php endif ?>
+                    
+                    <?php if($_GET['page'] != $maxpage):?>  
+                        <li id="next_page" class="pager-buttons"><a href='index.php?page=<?= $_GET['page'] + 1 ?>'>Next Page</a></li>
+                    <?php endif ?>
+                </ul>
+            </div> -->
+        </div>
     </div>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
