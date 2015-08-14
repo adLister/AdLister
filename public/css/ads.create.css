@@ -1,4 +1,5 @@
 body {
+    background-color: #DFD7E2;
     font-family: Helvetica, sans-serif;
 }
 
@@ -6,9 +7,20 @@ input:focus, textarea:focus{
     outline-color: #DFD7E2;
 }
 
-#header {
-	color: #0C7489;
-	text-align: center;
+h1{
+    color: #13505B;
+    width: 625px;
+    height: ;
+    text-align: right;
+    padding: 0 0 5px 0;
+    /*float: right;*/
+    margin-right:auto;
+    margin-left: auto;
+}
+
+hr{
+    border-color: #13505B;
+    border-width: 2px;
 }
 
 #form {
