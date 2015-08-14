@@ -51,9 +51,13 @@ p {
 	margin: 5px;
     color: #E1FFFF;
 }
-
+a:link{
+    color:#E1FFFF !important;
+    text-decoration: underline;
+}
 textarea {
 	width: 400px;
+    height: 200px;
 	margin: 10px;
 	border: 1px solid #0C7489;
 	color: #0C7489;
