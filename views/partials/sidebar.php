@@ -68,7 +68,7 @@
                   <li><a href="/categories.php?category=Writing/Editing">Writing/Editing</a></li>
                 </ul>
 
-                <a href="#">
+                <a href="myaccount.php">
                   <li class="category" >
                     <i class="fa fa-user fa-lg"></i> My Account
                   </li>
