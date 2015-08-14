@@ -66,14 +66,13 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
                 <? foreach ($ads as $key => $value): ?>
                     <div  class="col-sm-12">
                         <div class="row">
-                            <div id="post_details" class="col-sm-6 .col-sm-offset-4">
-                            <a href="/ads.show.php?id=<?= $value['id'] ?>">
-                               <strong><?= $value['title'];?></strong>
+                            <div id="post_details" class="col-sm-6">
+                                <a href="/ads.show.php?id=<?= $value['id'] ?>">
+                                <strong><?= $value['title'];?></strong>
                                 <ul>
                                     <li>Date Created: <?= $value['date_created'];?></li>
                                     <li>Price: $<?= $value['price'];?></li>
-                                    <li>Description: <?= $value['description'];?></li>
-                                    </a>
+                                    <li>Description: <?= $value['description'];?></li></a>
                                     <?php if($value['image_url']):?>
                                     <li>This add includes Photos</li>
                                     <?php endif; ?>
@@ -84,14 +83,14 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
                 <? endforeach; ?>
             </div>
         </div>
-        <di v>
+        <div>
             <ul class="pager">
                 <?php if($_GET['page'] >= 2): ?>    
-                     <li id='previous_page'><a href='index.php?page=<?= $_GET['page'] - 1 ?>'>Previous Page</a></li>
+                     <li id='previous_page'><a href='home.php?page=<?= $_GET['page'] - 1 ?>'>Previous Page</a></li>
                 <?php endif ?>
                  
                 <?php if($_GET['page'] != $maxpage):?>  
-                     <li id='next_page'><a href='index.php?page=<?= $_GET['page'] + 1 ?>'>Next Page</a></li>
+                     <li id='next_page'><a href='home.php?page=<?= $_GET['page'] + 1 ?>'>Next Page</a></li>
                 <?php endif ?>
             </ul>
         </div>

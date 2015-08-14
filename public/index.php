@@ -21,3 +21,4 @@ switch ($_SERVER['REQUEST_URI']) {
     default:
         include 'welcome.php';
         break;
+}
