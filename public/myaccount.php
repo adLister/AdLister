@@ -22,32 +22,9 @@ if(empty($_GET)){
    $_GET['page'] = '1';
 }
 
-$category = str_replace('-', ' ', Input::get('category'));
-$ads = Ad::categorySearch($category);
+$user = $_SESSION['email'];
+$userPosts = Ad::userSearch($user);
 
-// $errors = array();
-// $limit = 5;
-// $offset = (($_GET['page']-1) * $limit);
-
-// if(empty($_GET)){
-//     header("Location: categories.php?category=$category&page=1");
-//     exit();
-// }
-
-// $stmt = $dbc->prepare("SELECT * FROM ads LIMIT :limit OFFSET :offset");
-// $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-// $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-// $stmt->execute();
-// $ads= $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// $count = $dbc->query('SELECT count(*) FROM ads');
-// $stmt1 = $count->fetchColumn();
-// $maxpage = ceil($stmt1 / $limit);
-
-// if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){    
-//     header("location: ?page=$maxpage");
-//     exit();
-// }
 ?>
 <html>
 <head>
@@ -62,7 +39,7 @@ $ads = Ad::categorySearch($category);
 </head>
 
 <body>
-    <h1><?= $category ?></h1>
+    <h1><?= $user ?></h1>
     <hr>
     <div class="row">
         <div class="col-md-3">
@@ -70,8 +47,8 @@ $ads = Ad::categorySearch($category);
         </div>
         <div id="container_ads" class="col-md-9">
             <div>
-                <? foreach ($ads->attributes as $key => $value): ?>
-                    <?php if($value['category'] == "$category"):?>
+                <? foreach ($userPosts->attributes as $key => $value): ?>
+                    <?php if($value['posting_user'] == "$user"):?>
                         <div id="most_recent" class="col-sm-12">
                             <div class="row">
                                 <a href="/ads.show.php?id=<?= $value['id'] ?>">
@@ -86,6 +63,8 @@ $ads = Ad::categorySearch($category);
                                         <?php endif; ?>
                                     </div>
                                 </ul>
+                                <button class="btn btn-info"><a href="ads.edit.php?id=<?= $value['id'] ?>">Edit Post</a></button>
+                                <button class="btn btn-warning"><a href="ads.edit.php?id=<?= $value['id'] ?>">Delete Post</a></button>
                             </div><br>
                         </div>
                     <? endif; ?>

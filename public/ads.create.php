@@ -40,7 +40,7 @@ if(!empty($_POST)){
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $fileContents = file_get_contents($_FILES["file"]["tmp_name"]);
         $mimeType = $finfo->buffer($fileContents);
-        if ($mimeType != "image/png" || $mimeType != "image/gif" || $mimeType != "image/jpeg" || $mimeType != "image/jpg") {
+        if ($mimeType != "image/png" && $mimeType != "image/gif" && $mimeType != "image/jpeg" && $mimeType != "image/jpg") {
             echo "Img Error: Invalid File Type!";
             exit;
         }else{
@@ -52,7 +52,7 @@ if(!empty($_POST)){
         }
     }
 
-
+    var_dump($_SESSION);
     if(empty($errors) && !empty($_FILES['file'])){
         $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, price, category, posting_user) 
         VALUES(:title, :description, :image_url, :price, :category, :posting_user)");
@@ -62,7 +62,6 @@ if(!empty($_POST)){
         $newPost->bindValue(':price', Input::getNumber('price'), PDO::PARAM_STR);
         $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
         $newPost->bindValue(':posting_user', $_SESSION['LOGGED_IN_USER'], PDO::PARAM_STR);
-
         $newPost->execute();
 
         sleep(3);
@@ -82,7 +81,6 @@ if(!empty($_POST)){
         header('Location: index.php');
         exit;
     }
-
 }
 
 $category = array(

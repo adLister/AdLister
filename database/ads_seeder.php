@@ -48,11 +48,17 @@ $categories = array(
     'Writing/Editing'
     );
   
+<<<<<<< HEAD
 $ad = [
     'title' => 'toothbrush', 'description' => 'like new', 'image_url' => 'pingpong.jpeg','category' => "$category", 'price' => '5', 'posting_user' => 'agutie95@yahoo.com'
 ];
+=======
+>>>>>>> 05bcd54d6e120c0c9bb1e0bfb92d7f679ecb0cfd
 
 foreach ($categories as $category) {
+$ad = [
+    'title' => 'toothbrush', 'description' => 'like new', 'image_url' => 'pingpong.jpeg','category' => "$category", 'price' => '5', 'posting_user' => 'rem@gmail.com'
+];
 
     $stmt = $dbc->prepare("INSERT INTO ads(title, description, price, category, image_url, posting_user)
      VALUES(:title, :description, :price, :category, :image_url, :posting_user)");

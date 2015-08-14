@@ -41,6 +41,29 @@ class Ad extends Model
         return $instance;
     }
 
+    public static function userSearch($search)
+    {
+        self::dbConnect();
+
+        $query = 'SELECT * FROM ads WHERE posting_user = :search';
+        $stmt = self::$dbc->prepare($query);
+        $stmt->bindValue(':search', $search, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $instance = null;
+        if ($result)
+        {
+            $instance = new static;
+            $instance->attributes = $result;
+        }
+        return $instance;
+    }
+
+
+
+
     public static function idSearch($search)
     {
         self::dbConnect();
@@ -106,14 +129,17 @@ class Ad extends Model
                 SET date_created = :date_created, 
                     description = :description,
                     image_url = :image_url,
-                    category = :category
-                    WHERE title = :title';
+                    category = :category,
+                    title = :title,
+                    posting_user = :posting_user
+                    WHERE id = :id';
         $stmt = self::$dbc->prepare($query);
         $stmt->bindValue(':date_created', $this->attributes['date_created'], PDO::PARAM_STR);
         $stmt->bindValue(':description', $this->attributes['description'], PDO::PARAM_STR);
         $stmt->bindValue(':image_url', $this->attributes['image_url'], PDO::PARAM_STR);
         $stmt->bindValue(':category', $this->attributes['category'], PDO::PARAM_STR);
         $stmt->bindValue(':title', $this->attributes['title'], PDO::PARAM_STR);
+        $stmt->bindValue(':posting_user', $_SESSION['email'], PDO::PARAM_STR);
         $stmt->execute();
     }
 
@@ -132,9 +158,9 @@ class Ad extends Model
 
     public function delete()
     {
-        $query = 'DELETE FROM ads WHERE title = :title';
+        $query = 'DELETE FROM ads WHERE id = :id';
         $stmt = self::$dbc->prepare($query);
-        $stmt->bindValue(':title', $title, PDO::PARAM_INT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }
 }
