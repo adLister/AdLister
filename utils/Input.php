@@ -33,7 +33,7 @@ class Input
         }
     }
 
-    public static function getString($key, $min = 2, $max = 500)
+    public static function getString($key, $min = 1, $max = 500)
     {
         $value = self::escape(trim(static::get($key)));
         // $isString = settype($value, 'string');
@@ -51,7 +51,7 @@ class Input
         return $value;
     }    
 
-    public static function getNumber($key ,$min = 2, $max = 30)
+    public static function getNumber($key ,$min = 1, $max = 30)
     {
         $value = self::escape(str_replace(',', '', static::get($key)));
 
