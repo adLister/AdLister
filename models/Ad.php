@@ -61,9 +61,6 @@ class Ad extends Model
         return $instance;
     }
 
-
-
-
     public static function idSearch($search)
     {
         self::dbConnect();
