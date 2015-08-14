@@ -49,18 +49,19 @@ $categories = array(
     );
   
 $ad = [
-    'title' => 'toothbrush', 'description' => 'like new', 'image_url' => 'pingpong.jpeg','category' => "$category", 'price' => '5'
+    'title' => 'toothbrush', 'description' => 'like new', 'image_url' => 'pingpong.jpeg','category' => "$category", 'price' => '5', 'posting_user' => 'agutie95@yahoo.com'
 ];
 
 foreach ($categories as $category) {
 
-    $stmt = $dbc->prepare("INSERT INTO ads(title, description, price, category, image_url)
-     VALUES(:title, :description, :price, :category, :image_url)");
+    $stmt = $dbc->prepare("INSERT INTO ads(title, description, price, category, image_url, posting_user)
+     VALUES(:title, :description, :price, :category, :image_url, :posting_user)");
     $stmt ->bindValue(':title', $ad['title'], PDO::PARAM_STR);
     $stmt ->bindValue(':description', $ad['description'], PDO::PARAM_STR);
     $stmt ->bindValue(':price', $ad['price'], PDO::PARAM_STR);
     $stmt ->bindValue(':category', $category, PDO::PARAM_STR);
     $stmt ->bindValue(':image_url', $ad['image_url'], PDO::PARAM_STR);
+    $stmt ->bindValue(':posting_user', $ad['posting_user'], PDO::PARAM_STR);
     $stmt->execute();
     echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
     

@@ -1,7 +1,5 @@
 <?php
 
-
-
 class Model
 {
 // An attributes property (array) that is not visible outside of the class
@@ -24,8 +22,7 @@ class Model
     {
         if (!self::$dbc)
         {
-            self::$dbc = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
-
+            self::$dbc = new PDO('mysql:host='. $_ENV['DB_HOST'].';dbname='. $_ENV['DB_NAME'], $_ENV['DB_USER'], $_ENV['DB_PASS']);
             self::$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
     }

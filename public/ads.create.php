@@ -54,25 +54,28 @@ if(!empty($_POST)){
 
 
     if(empty($errors) && !empty($_FILES['file'])){
-        $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, price, category) 
-        VALUES(:title, :description, :image_url, :price, :category)");
+        $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, price, category, posting_user) 
+        VALUES(:title, :description, :image_url, :price, :category, :posting_user)");
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
         $newPost->bindValue(':image_url', $filename, PDO::PARAM_STR);
         $newPost->bindValue(':price', Input::getNumber('price'), PDO::PARAM_STR);
         $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
+        $newPost->bindValue(':posting_user', $_SESSION['LOGGED_IN_USER'], PDO::PARAM_STR);
+
         $newPost->execute();
 
         sleep(3);
         header('Location: index.php');
         exit;
     }else{
-        $newPost = $dbc->prepare("INSERT INTO ads(title, description, price, category) 
-        VALUES(:title, :description, :price, :category)");
+        $newPost = $dbc->prepare("INSERT INTO ads(title, description, price, category, posting_user) 
+        VALUES(:title, :description, :price, :category, :posting_user)");
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
         $newPost->bindValue(':price', Input::getNumber('price'), PDO::PARAM_STR);
         $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
+        $newPost->bindValue(':posting_user', $_SESSION['LOGGED_IN_USER'], PDO::PARAM_STR);
         $newPost->execute();
 
         sleep(3);
@@ -123,24 +126,31 @@ $category = array(
 ?>
 
 <html>
-    <head>
-        <title>Add Post</title>
+<head>
+    <title>Add Post</title>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
-        <link rel="stylesheet" href="/css/ads.create.css"> 
-        <link rel="stylesheet" href="/css/custom.css"> 
-    </head>
-    <body>
-        <h2 id="header">Create a new post!</h2>
-        <div id="container">
-            <div id="errors">
-                <?php foreach ($errors as $error):?>
-                    <p><?= $error ?></p>
-                <?php endforeach ?>
-            </div>
+    <link rel="stylesheet" href="/css/ads.create.css"> 
+    <link rel="stylesheet" href="/css/sidebar.css">
 
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Create a new Post!</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-3">
+            <?= require_once '../views/partials/sidebar.php'; ?>
+        </div>
+        <div id="errors">
+            <?php foreach ($errors as $error):?>
+                <p><?= $error ?></p>
+            <?php endforeach ?>
+        </div>
+        <div id="container_ads" class="col-md-9">
             <div id="form">
                 <form action="ads.create.php" method="POST" enctype="multipart/form-data">
                     <label>*Title:</label>
@@ -169,7 +179,8 @@ $category = array(
                 </form>
             </div>
         </div>
-        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    </body>
+    </div>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
 </html>

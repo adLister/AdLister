@@ -47,7 +47,7 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
 </head>
 
 <body>
-    <h1>Most Recent</h1>
+    <h1> Most Recent</h1>
     <hr>
     <div class="row">
         <div class="col-md-3">
