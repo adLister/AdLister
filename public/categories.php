@@ -64,28 +64,31 @@ $ads = Ad::categorySearch($category);
 </head>
 
 <body>
+    <h1><?= $category ?></h1>
+    <hr>
     <div class="row">
         <div class="col-md-3">
             <?= require_once '../views/partials/sidebar.php'; ?>
         </div>
         <div id="container_ads" class="col-md-9">
-            <div class="row">
+            <div>
                 <? foreach ($ads->attributes as $key => $value): ?>
                     <?php if($value['category'] == "$category"):?>
-                        <div id="most_recent">
-                            <a href="/ads.show.php?id=<?= $value['id'] ?>">
-                            <ul>
-                                <?php if($value['image_url']):?>
-                                    <p><img src="../img/uploads/<?= $value['image_url'];?>" alt=""></p>
-                                <?php endif; ?>
-                                
-                                <div id="post_details">
-                                    <strong><u><?= $value['title'];?></strong>
-                                    <li>Date Created: <?= $value['date_created'];?></li>
-                                    <li>Price: $<?= $value['price'];?></li>
-                                    <li>Description: <?= $value['description'];?></li>
-                                </div>
-                            </ul>
+                        <div id="most_recent" class="col-sm-12">
+                            <div class="row">
+                                <a href="/ads.show.php?id=<?= $value['id'] ?>">
+                                <strong><u><?= $value['title'];?></strong>
+                                <ul>
+                                    <div id="post_details" class="col-sm-6">
+                                        <li>Date Created: <?= $value['date_created'];?></li>
+                                        <li>Price: $<?= $value['price'];?></li>
+                                        <li>Description: <?= $value['description'];?></li></a>
+                                        <?php if($value['image_url']):?>
+                                            <li>This add includes Photos</li>
+                                        <?php endif; ?>
+                                    </div>
+                                </ul>
+                            </div>
                         </div>
                     <? endif; ?>
                 <? endforeach; ?>
