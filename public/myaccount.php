@@ -49,7 +49,7 @@ $userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
     <hr>
     <div class="row">
         <div class="col-md-3">
-           <?= require_once '../views/partials/sidebar.php'; ?>
+            <?= require_once '../views/partials/sidebar.php'; ?>
         </div>
         <div id="container_ads" class="col-md-9">
             <div>
@@ -58,7 +58,7 @@ $userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
                         <div id="most_recent" class="col-sm-12">
                             <div class="row">
                                 <a href="/ads.show.php?id=<?= $value['id'] ?>">
-                                <strong><?= $value['title'];?></strong>
+                                <strong><u><?= $value['title'];?></u></strong>
                                 <ul>
                                     <div id="post_details" class="col-sm-6">
                                         <li>Date Created: <?= $value['date_created'];?></li>
@@ -76,7 +76,7 @@ $userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
                     <? endif; ?>
                 <? endforeach; ?>
             </div>
-       <div>
+	        <div>
                 <ul class="pager">
                     <?php if($page >= 2): ?>    
                         <li id="previous_page" class="pager-buttons"><a href='myaccount.php?page=<?= $page - 1 ?>'>Previous Page</a></li>

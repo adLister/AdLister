@@ -75,7 +75,7 @@ $ads = Ad::categorySearch($category);
                         <div id="most_recent" class="col-sm-12">
                             <div class="row">
                                 <a href="/ads.show.php?id=<?= $value['id'] ?>">
-                                <strong><?= $value['title'];?></strong>
+                                <strong><u><?= $value['title'];?></u></strong>
                                 <ul>
                                     <div id="post_details" class="col-sm-6">
                                         <li>Date Created: <?= $value['date_created'];?></li>

@@ -17,29 +17,14 @@ if (Input::has('logout') && $_GET['logout'] == 'true'){
     exit(); 
 }
 
-$errors = array();
-$limit = 10;
-$offset = (($_GET['page']-1) * $limit);
-
 if(empty($_GET)){
-    header("Location: ?page=1");
-    exit();
+   $page = '1';
+}else{
+    $page=$_GET['page'];
 }
 
-$stmt = $dbc->prepare("SELECT * FROM ads LIMIT :limit OFFSET :offset");
-$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-$stmt->execute();
-$ads= $stmt->fetchAll(PDO::FETCH_ASSOC);
+$userPosts = Ad::paginateHome(10,(($page-1) * 10));
 
-$count = $dbc->query('SELECT count(*) FROM ads');
-$stmt1 = $count->fetchColumn();
-$maxpage = ceil($stmt1 / $limit);
-
-if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){    
-    header("location: ?page=$maxpage");
-    exit();
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,36 +48,42 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
         </div>
         <div id="container_ads" class="col-md-9">
             <div>
-                <? foreach ($ads as $key => $value): ?>
+                <?php 
+                    $max = $userPosts->attributes['maxpage'];
+                    unset($userPosts->attributes['maxpage']);
+                ?>
+                <? foreach ($userPosts->attributes as $key => $value): ?>
                     <div  class="col-sm-12">
                         <div class="row">
                             <div id="post_details" class="col-sm-6">
-                                <a href="/ads.show.php?id=<?= $value['id'] ?>">
-                                <strong><?= $value['title'];?></strong>
+                            <a href="/ads.show.php?id=<?= $value['id'] ?>">
+                               <strong><u><?= $value['title'];?></u></strong>
                                 <ul>
                                     <li>Date Created: <?= $value['date_created'];?></li>
                                     <li>Price: $<?= $value['price'];?></li>
-                                    <li>Description: <?= $value['description'];?></li></a>
+                                    <li>Description: <?= $value['description'];?></li>
+                                    </a>
                                     <?php if($value['image_url']):?>
-                                    <li>This add includes Photos</li>
+                                        <li>This add includes Photos</li>
                                     <?php endif; ?>
                                 </ul>
                             </div>
                         </div><br>
                     </div>
                 <? endforeach; ?>
+
             </div>
-        </div>
         <div>
             <ul class="pager">
-                <?php if($_GET['page'] >= 2): ?>    
-                     <li id='previous_page'><a href='home.php?page=<?= $_GET['page'] - 1 ?>'>Previous Page</a></li>
+                <?php if($page >= 2): ?>    
+                    <li id="previous_page" class="pager-buttons"><a href='home.php?page=<?= $page - 1 ?>'>Previous Page</a></li>
                 <?php endif ?>
-                 
-                <?php if($_GET['page'] != $maxpage):?>  
-                     <li id='next_page'><a href='home.php?page=<?= $_GET['page'] + 1 ?>'>Next Page</a></li>
+                
+                <?php if($page != $max):?>  
+                    <li id="next_page" class="pager-buttons"><a href='home.php?page=<?= $page + 1 ?>'>Next Page</a></li>
                 <?php endif ?>
             </ul>
+        </div>
         </div>
     </div>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
