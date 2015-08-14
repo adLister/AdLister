@@ -11,7 +11,7 @@ class Ad extends Model
     	$stmt = self::$dbc->prepare($query);
     	$stmt->bindValue(':id', $id, PDO::PARAM_INT);
     	$stmt->execute();
-    	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    	$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $instance = null;
         if ($result) {
