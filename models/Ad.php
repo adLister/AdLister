@@ -84,16 +84,29 @@ class Ad extends Model
         return $instance;
     }
 
-    public static function limit($limit, $offset)
+    public static function paginateUserAds($limit, $offset, $user)
     {
         self::dbConnect();
 
-        $stmt = self::$dbc->prepare("SELECT * FROM ads LIMIT :cheese OFFSET :offset");
+        $stmt = self::$dbc->prepare("SELECT * FROM ads WHERE posting_user = :posting_user LIMIT :limit OFFSET :offset");
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-        $stmt->bindValue(':cheese', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':posting_user', $user, PDO::PARAM_INT);
         $stmt->execute();
-        $ads= $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $ads;
+        $result= $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $count = self::$dbc->query('SELECT count(*) FROM ads');
+        $stmt1 = $count->fetchColumn();
+        $maxpage = ceil($stmt1 / $limit);
+
+        $instance = null;
+        if ($result)
+        {
+            $instance = new static;
+            $instance->attributes = $result;
+            $instance->attributes['maxpage'] = $maxpage;
+        }
+        return $instance;
     }
 
     // Get all rows from users table
@@ -156,8 +169,9 @@ class Ad extends Model
         $stmt->execute();
     }
 
-    public function delete()
+    public static function delete($id)
     {
+        self::dbConnect();
         $query = 'DELETE FROM ads WHERE id = :id';
         $stmt = self::$dbc->prepare($query);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
