@@ -56,16 +56,15 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
         <div id="container_ads" class="col-md-9">
             <div>
                 <? foreach ($ads as $key => $value): ?>
-                    <div>
+                    <div  class="col-sm-12">
                         <div class="row">
-                            <div id="post_details">
+                            <div id="post_details" class="col-sm-6">
                             <a href="/ads.show.php?id=<?= $value['id'] ?>">
                                <strong><u><?= $value['title'];?></strong>
                                 <ul>
                                     <li>Date Created: <?= $value['date_created'];?></li>
                                     <li>Price: $<?= $value['price'];?></li>
-                                    <li>Description: <?= $value['description'];?></li>
-                                    </a>
+                                    <li>Description: <?= $value['description'];?></li></a>
                                     <?php if($value['image_url']):?>
                                     <li>This add includes Photos</li>
                                     <?php endif; ?>

@@ -158,7 +158,7 @@ $category = array(
                         <input id="exampleInputFile" type="file" name="file">
                         <p class="help-block">Accepts PNG, JPEG, and JPG.</p>
 
-                        <label>*Price:</label>
+                        <label>*Price: $</label>
                         <input id="price" type="number" placeholder="Price" name="price" value="<?php if(!empty($_POST['price'])){ echo $_POST['price'];}?>">
                     </div>
 
