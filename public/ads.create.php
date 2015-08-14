@@ -40,7 +40,7 @@ if(!empty($_POST)){
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $fileContents = file_get_contents($_FILES["file"]["tmp_name"]);
         $mimeType = $finfo->buffer($fileContents);
-        if ($mimeType != "image/png" || $mimeType != "image/gif" || $mimeType != "image/jpeg" || $mimeType != "image/jpg") {
+        if ($mimeType != "image/png" && $mimeType != "image/gif" && $mimeType != "image/jpeg" && $mimeType != "image/jpg") {
             echo "Img Error: Invalid File Type!";
             exit;
         }else{
@@ -52,27 +52,29 @@ if(!empty($_POST)){
         }
     }
 
-
+    var_dump($_SESSION);
     if(empty($errors) && !empty($_FILES['file'])){
-        $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, price, category) 
-        VALUES(:title, :description, :image_url, :price, :category)");
+        $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, price, category, posting_user) 
+        VALUES(:title, :description, :image_url, :price, :category, :posting_user)");
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
         $newPost->bindValue(':image_url', $filename, PDO::PARAM_STR);
         $newPost->bindValue(':price', Input::getNumber('price'), PDO::PARAM_STR);
         $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
+        $newPost->bindValue(':posting_user', $_SESSION['LOGGED_IN_USER'], PDO::PARAM_STR);
         $newPost->execute();
 
         sleep(3);
         header('Location: index.php');
         exit;
     }else{
-        $newPost = $dbc->prepare("INSERT INTO ads(title, description, price, category) 
-        VALUES(:title, :description, :price, :category)");
+        $newPost = $dbc->prepare("INSERT INTO ads(title, description, price, category, posting_user) 
+        VALUES(:title, :description, :price, :category, :posting_user)");
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
         $newPost->bindValue(':price', Input::getNumber('price'), PDO::PARAM_STR);
         $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
+        $newPost->bindValue(':posting_user', $_SESSION['LOGGED_IN_USER'], PDO::PARAM_STR);
         $newPost->execute();
 
         sleep(3);

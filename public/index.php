@@ -18,7 +18,6 @@ if(empty($_GET)){
     header("Location: ?page=1");
     exit();
 }
-
 $stmt = $dbc->prepare("SELECT * FROM ads LIMIT :limit OFFSET :offset");
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
@@ -51,7 +50,7 @@ if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){
     <hr>
     <div class="row">
         <div class="col-md-3">
-            <?= require_once '../views/partials/sidebar.php'; ?>
+        <?= require_once '../views/partials/sidebar.php'; ?>
 </div>
     <div id="container_ads" class="col-md-9">
         <div>
