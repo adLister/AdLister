@@ -73,8 +73,8 @@ $userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
                                         <?php endif; ?>
                                     </div>
                                 </ul>
-                                <a class="btn btn-info" href="ads.edit.php?id=<?= $value['id'] ?>">Edit Post</a>    
-                                <a class="btn btn-warning" href="myaccount.php?delete=y&id=<?= $value['id'] ?>">Delete Post</a>
+                                <a class="edit-button" href="ads.edit.php?id=<?= $value['id'] ?>">Edit Post</a>    
+                                <a class="delete-button" href="myaccount.php?delete=y&id=<?= $value['id'] ?>">Delete Post</a>
                             </div><br>
                         </div>
                     <? endif; ?>
