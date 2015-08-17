@@ -17,6 +17,10 @@ hr{
     border-width: 2px;
 }
 
+#errors {
+    color: red;
+}
+
 .ads-href, .single-ad-details {
     color: #13505B !important;
 }
@@ -64,4 +68,8 @@ hr{
 .delete-button {
     background-color: #13505B;
     border: 1px solid #13505B;
+}
+
+.edit-button:hover, .delete-button:hover {
+    color: #E1FFFF;
 }
