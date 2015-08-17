@@ -37,7 +37,7 @@ hr{
     background-color: #0C7489;
     border: 1px solid #13505B;
     border-radius: 15px;
-    color:#E1FFFF;
+    color: #E1FFFF;
 }
 /*pager buttons*/
 #next_page{
@@ -46,4 +46,22 @@ hr{
 
 #previous_page{
     float: left;
+}
+
+.edit-button, .delete-button {
+    width: 200px;
+    height: 100px;
+    color: #E1FFFF;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.edit-button{
+    background-color: #0C7489;
+    border: 1px solid #0C7489;
+}
+
+.delete-button {
+    background-color: #13505B;
+    border: 1px solid #13505B;
 }
