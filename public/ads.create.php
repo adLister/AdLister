@@ -157,7 +157,7 @@ $category = array(
             <div id="form">
                 <form action="ads.create.php" method="POST" enctype="multipart/form-data">
                     <label>*Title:</label>
-                    <input id="title" type="text" placeholder="Post Title" name="title" value="<?php if(!empty($_POST['title'])){ echo $_POST['title'];}?>"autofocus><br>
+                    <input id="title" type="text" placeholder="Post Title" required="" name="title" value="<?php if(!empty($_POST['title'])){ echo $_POST['title'];}?>"autofocus><br>
 
                     <div>
                         <label>*Category:</label>
@@ -167,16 +167,16 @@ $category = array(
                             <?php endforeach?>
                         </select><br>   
 
-                        <label for="exampleInputFile" name="image_url" id="image_url" accept='image/*'>File input:</label>
+                        <label for="exampleInputFile" name="image_url" id="image_url" required="" accept='image/*'>File input:</label>
                         <input id="exampleInputFile" type="file" name="file">
                         <p class="help-block">Accepts PNG, JPEG, and JPG.</p>
 
                         <label>*Price: $</label>
-                        <input id="price" type="number" placeholder="Price" name="price" value="<?php if(!empty($_POST['price'])){ echo $_POST['price'];}?>">
+                        <input id="price" type="number" placeholder="Price" name="price" required="" value="<?php if(!empty($_POST['price'])){ echo $_POST['price'];}?>">
                     </div>
 
                     <label>*Description:</label><br>
-                    <textarea id="description" type="text" placeholder="Description" name="description" value="<?php if(!empty($_POST['description'])){ echo $_POST['description'];}?>"></textarea><br>
+                    <textarea id="description" type="text" placeholder="Description" name="description" required="" value="<?php if(!empty($_POST['description'])){ echo $_POST['description'];}?>"></textarea><br>
                     <button id="submit" type="submit">Submit</button>
                     <p id="required">*Required Fields</p>
                 </form>

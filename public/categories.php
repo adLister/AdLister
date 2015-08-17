@@ -23,18 +23,14 @@ if(empty($_GET)){
 }
 
 $category = str_replace('-', ' ', Input::get('category'));
-$ads = Ad::categorySearch($category);
 
-if(empty($_GET)){
+if(empty($_GET['page'])){
    $page = '1';
 }else{
-    $_GET[?category=$category&page=1];
-    exit();
+    $page=$_GET['page'];
 }
 
-$userPosts = Ad::userSearch($category);
-
-$userPosts = Ad::paginateCategory(5,(($page-1) * 5), $category);
+$userPosts = Ad::paginateCategories(10,(($page-1) * 10), $category);
 ?>
 <html>
 <head>
@@ -53,11 +49,15 @@ $userPosts = Ad::paginateCategory(5,(($page-1) * 5), $category);
     <hr>
     <div class="row">
         <div class="col-md-3">
-            <?= require_once '../views/partials/sidebar.php'; ?>
+           <?= require_once '../views/partials/sidebar.php'; ?>
         </div>
         <div id="container_ads" class="col-md-9">
             <div>
-                <? foreach ($ads->attributes as $key => $value): ?>
+                <?php 
+                    $max = $userPosts->attributes['maxpage'];
+                    unset($userPosts->attributes['maxpage']);
+                ?>
+                <? foreach ($userPosts->attributes as $key => $value): ?>
                     <?php if($value['category'] == "$category"):?>
                         <div id="most_recent" class="col-sm-12">
                             <div class="row">
@@ -81,11 +81,11 @@ $userPosts = Ad::paginateCategory(5,(($page-1) * 5), $category);
             <div>
                 <ul class="pager">
                     <?php if($page >= 2): ?>    
-                        <li id="previous_page" class="pager-buttons"><a href='category.php?page=<?= $page - 1 ?>'>Previous Page</a></li>
+                        <li id="previous_page" class="pager-buttons"><a href='categories.php?page=<?= $page - 1 ?>'>Previous Page</a></li>
                     <?php endif ?>
                     
-                    <?php if($page != $userPosts->attributes['maxpage']):?>  
-                        <li id="next_page" class="pager-buttons"><a href='category.php?page=<?= $page + 1 ?>'>Next Page</a></li>
+                    <?php if($page != $max):?>  
+                        <li id="next_page" class="pager-buttons"><a href='categories.php?page=<?= $page + 1 ?>'>Next Page</a></li>
                     <?php endif ?>
                 </ul>
             </div>

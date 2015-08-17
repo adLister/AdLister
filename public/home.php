@@ -24,7 +24,6 @@ if(empty($_GET)){
 }
 
 $userPosts = Ad::paginateHome(10,(($page-1) * 10));
-
 ?>
 <!DOCTYPE html>
 <html>
