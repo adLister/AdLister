@@ -17,7 +17,7 @@ hr{
     border-width: 2px;
 }
 
-.ads-href {
+.ads-href, .single-ad-details {
     color: #13505B !important;
 }
 

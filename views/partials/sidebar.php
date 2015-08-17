@@ -36,7 +36,7 @@
                 </li>  
                 <ul class="sub-menu collapse" id="service">
                   <a class="sidebar-href" href="/categories.php?category=Automotive"><li>Automotive</li></a>
-                  <a class="sidebar-href" href="/categories.php?category=Computers-and-Technology"><li>Computers and Technology</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Computer-and-Technology"><li>Computer and Technology</li></a>
                   <a class="sidebar-href" href="/categories.php?category=Event"><li>Event</li></a>
                   <a class="sidebar-href" href="/categories.php?category=Legal"><li>Legal</li></a>
                   <a class="sidebar-href" href="/categories.php?category=Lessons"><li>Lessons</li></a>

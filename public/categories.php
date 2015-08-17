@@ -63,9 +63,9 @@ $userPosts = Ad::paginateCategories(10,(($page-1) * 10), $category);
                                     <div id="post_details" class="col-sm-6">
                                         <li>Date Created: <?= $value['date_created'];?></li>
                                         <li>Price: $<?= $value['price'];?></li>
-                                        <li>Description: <?= $value['description'];?></li></a>
+                                        <li>Description: <?= $value['description'];?></li>
                                         <?php if($value['image_url']):?>
-                                            <li class="ads-href">This add includes Photos</li>
+                                            <li class="ads-href">This add includes Photos</li></a>
                                         <?php endif; ?>
                                     </div>
                                 </ul>
