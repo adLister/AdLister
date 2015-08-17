@@ -6,7 +6,7 @@ session_start();
 $sessionId = session_id();
 
 if (Auth::checkUser()){
-    $username = Auth::currentUser();   
+    Auth::currentUser();   
 } else{
     header("Location: welcome.php");
     exit();
