@@ -7,7 +7,7 @@ class Ad extends Model
 	public static function find($id)
 	{
         self::dbConnect();
-        $query = 'SELECT * FROM ads WHERE id = :id';
+        $query = 'SELECT * FROM ads WHERE id = :id ORDER BY date_created DESC';
     	$stmt = self::$dbc->prepare($query);
     	$stmt->bindValue(':id', $id, PDO::PARAM_INT);
     	$stmt->execute();
@@ -25,7 +25,7 @@ class Ad extends Model
     {
         self::dbConnect();
 
-        $query = 'SELECT * FROM ads WHERE posting_user = :search';
+        $query = 'SELECT * FROM ads WHERE posting_user = :search ORDER BY date_created DESC';
         $stmt = self::$dbc->prepare($query);
         $stmt->bindValue(':search', $search, PDO::PARAM_INT);
         $stmt->execute();
@@ -45,7 +45,7 @@ class Ad extends Model
     {
         self::dbConnect();
 
-        $query = 'SELECT * FROM ads WHERE id = :search';
+        $query = 'SELECT * FROM ads WHERE id = :search ORDER BY date_created DESC';
         $stmt = self::$dbc->prepare($query);
         $stmt->bindValue(':search', $search, PDO::PARAM_INT);
         $stmt->execute();
@@ -65,13 +65,13 @@ class Ad extends Model
     {
         self::dbConnect();
 
-        $count = self::$dbc->prepare('SELECT count(*) FROM ads WHERE posting_user = :posting_user');
+        $count = self::$dbc->prepare('SELECT count(*) FROM ads WHERE posting_user = :posting_user ORDER BY date_created DESC');
         $count->bindValue(':posting_user', $user, PDO::PARAM_STR);
         $count->execute();
         $stmt1 = $count->fetchColumn();
         $maxpage = ceil($stmt1 / $limit);
 
-        $stmt = self::$dbc->prepare("SELECT * FROM ads WHERE posting_user = :posting_user LIMIT :limit OFFSET :offset");
+        $stmt = self::$dbc->prepare("SELECT * FROM ads WHERE posting_user = :posting_user ORDER BY date_created DESC LIMIT :limit OFFSET :offset");
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
         $stmt->bindValue(':posting_user', $user, PDO::PARAM_INT);
@@ -94,13 +94,13 @@ class Ad extends Model
     public static function paginateCategories($limit, $offset, $category)
     {
         self::dbConnect();
-        $count = self::$dbc->prepare("SELECT count(*) FROM ads WHERE category = :category");
+        $count = self::$dbc->prepare("SELECT count(*) FROM ads WHERE category = :category ORDER BY date_created DESC");
         $count->bindValue(':category', $category, PDO::PARAM_STR);
         $count->execute();
         $count = $count->fetchColumn();
         $maxpage = ceil($count / $limit);
 
-        $stmt = self::$dbc->prepare("SELECT * FROM ads WHERE category = :category LIMIT :limit OFFSET :offset");
+        $stmt = self::$dbc->prepare("SELECT * FROM ads WHERE category = :category ORDER BY date_created DESC LIMIT :limit OFFSET :offset");
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
         $stmt->bindValue(':category', $category, PDO::PARAM_STR);
@@ -121,18 +121,18 @@ class Ad extends Model
     public static function paginateHome($limit, $offset)
     {
         self::dbConnect();
-        $count = self::$dbc->query('SELECT count(*) FROM ads');
+        $count = self::$dbc->query('SELECT count(*) FROM ads ORDER BY date_created DESC');
         $count->execute();
         $count = $count->fetchColumn();
         $maxpage = ceil($count / $limit);
 
-        $stmt = self::$dbc->prepare("SELECT * FROM ads LIMIT :limit OFFSET :offset");
+        $stmt = self::$dbc->prepare("SELECT * FROM ads ORDER BY date_created DESC LIMIT :limit OFFSET :offset");
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $count = self::$dbc->query('SELECT count(*) FROM ads');
+        $count = self::$dbc->query('SELECT count(*) FROM ads ORDER BY date_created DESC');
         $stmt1 = $count->fetchColumn();
         $maxpage = ceil($stmt1 / $limit);
 
@@ -150,7 +150,7 @@ class Ad extends Model
     {
         self::dbConnect();
 
-        $stmt = self::$dbc->prepare("SELECT * FROM ads WHERE category = :category LIMIT :limit OFFSET :offset");
+        $stmt = self::$dbc->prepare("SELECT * FROM ads WHERE category = :category ORDER BY date_created DESC LIMIT :limit OFFSET :offset");
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
         $stmt->bindValue(':category', $category, PDO::PARAM_INT);
@@ -174,7 +174,7 @@ class Ad extends Model
         self::dbConnect();
 
         // get all rows
-        $stmt = self::$dbc->query('SELECT * FROM ads');
+        $stmt = self::$dbc->query('SELECT * FROM ads ORDER BY date_created desc');
 
         // Assign result to variable
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // <-- this is okay because there's not a prepared statement
