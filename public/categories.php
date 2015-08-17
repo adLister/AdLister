@@ -30,8 +30,7 @@ if(empty($_GET['page'])){
     $page=$_GET['page'];
 }
 
-$userPosts = Ad::paginateCategories(10,(($page-1) * 10), $category);
-
+$userPosts = Ad::paginateCategories(5,(($page-1) * 5), $category);
 ?>
 <html>
 <head>

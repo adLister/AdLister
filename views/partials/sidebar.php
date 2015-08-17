@@ -16,18 +16,18 @@
                   <a href="#"><i class="fa fa-gift fa-lg"></i> For Sale <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="forsale">
-                    <li><a href="/categories.php?category=Appliances">Appliances</a></li>
-                    <li><a href="/categories.php?category=Arts-and-Crafts">Arts and Crafts</a></li>
-                    <li><a href="/categories.php?category=Auto-Parts">Auto Parts</a></li>
-                    <li><a href="/categories.php?category=Baby-and-Kid">Baby and Kid</a></li>
-                    <li><a href="/categories.php?category=Books">Books</a></li>
-                    <li><a href="/categories.php?category=Cars-and-Trucks">Cars and Trucks</a></li>
-                    <li><a href="/categories.php?category=Computers-and-Electronics">Computers and Electronics</a></li>
-                    <li><a href="/categories.php?category=Furniture">Furniture</a></li>
-                    <li><a href="/categories.php?category=Music">Music</a></li>
-                    <li><a href="/categories.php?category=Sports-and-Outdoors">Sports and Outdoors</a></li>
-                    <li><a href="/categories.php?category=Tools">Tools</a></li>
-                    <li><a href="/categories.php?category=Video-Gaming">Video Gaming</a></li>
+                    <a class="sidebar-href" href="/categories.php?category=Appliances"><li>Appliances</li></a>
+                    <a class="sidebar-href" href="/categories.php?category=Arts-and-Crafts"><li>Arts and Crafts</li></a>
+                    <a class="sidebar-href" href="/categories.php?category=Auto-Parts"><li>Auto Parts</li></a>
+                    <a class="sidebar-href" href="/categories.php?category=Baby-and-Kid"><li>Baby and Kid</li></a>
+                    <a class="sidebar-href" href="/categories.php?category=Books"><li>Books</li></a>
+                    <a class="sidebar-href" href="/categories.php?category=Cars-and-Trucks"><li>Cars and Trucks</li></a>
+                    <a class="sidebar-href" href="/categories.php?category=Computers-and-Electronics"><li>Computers and Electronics</li></a>
+                    <a class="sidebar-href" href="/categories.php?category=Furniture"><li>Furniture</li></a>
+                    <a class="sidebar-href" href="/categories.php?category=Music"><li>Music</li></a>
+                    <a class="sidebar-href" href="/categories.php?category=Sports-and-Outdoors"><li>Sports and Outdoors</li></a>
+                    <a class="sidebar-href" href="/categories.php?category=Tools"><li>Tools</li></a>
+                    <a class="sidebar-href" href="/categories.php?category=Video-Gaming"><li>Video Gaming</li></a>
                 </ul>
 
 
@@ -35,37 +35,37 @@
                   <a href="#"><i class="fa fa-dashboard fa-lg"></i> Services <span class="arrow"></span></a>
                 </li>  
                 <ul class="sub-menu collapse" id="service">
-                  <li><a href="/categories.php?category=Automotive">Automotive</a></li>
-                  <li><a href="/categories.php?category=Computers-and-Technology">Computers and Technology</a></li>
-                  <li><a href="/categories.php?category=Event">Event</a></li>
-                  <li><a href="/categories.php?category=Legal">Legal</a></li>
-                  <li><a href="/categories.php?category=Lessons">Lessons</a></li>
-                  <li><a href="/categories.php?category=Pet">Pet</a></li>
-                  <li><a href="/categories.php?category=Realator">Realator</a></li>
+                  <a class="sidebar-href" href="/categories.php?category=Automotive"><li>Automotive</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Computers-and-Technology"><li>Computers and Technology</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Event"><li>Event</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Legal"><li>Legal</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Lessons"><li>Lessons</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Pet"><li>Pet</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Realator"><li>Realator</li></a>
                 </ul>
 
                 <li data-toggle="collapse" data-target="#jobs" class="collapsed">
                   <a href="#"><i class="fa fa-globe fa-lg"></i> Jobs <span class="arrow"></span></a>
                 </li>  
                 <ul class="sub-menu collapse" id="jobs">
-                  <li><a href="/categories.php?category=Accounting-and-Finance">Accounting and Finance</a></li>
-                  <li><a href="/categories.php?category=Admin-and-Office">Admin and Office</a></li>
-                  <li><a href="/categories.php?category=Art/Media/Design">Art/Media/Design</a></li>
-                  <li><a href="/categories.php?category=Biotech-and-Science">Biotech and Science</a></li>
-                  <li><a href="/categories.php?category=Business/Mgmt">Business/Mgmt</a></li>
-                  <li><a href="/categories.php?category=Customer-Service">Customer Service</a></li>
-                  <li><a href="/categories.php?category=Education">Education</a></li>
-                  <li><a href="/categories.php?category=Human-Resources">Human Resources</a></li>
-                  <li><a href="/categories.php?category=Internet-Engineers">Internet Engineers</a></li>
-                  <li><a href="/categories.php?category=Legal-Paralegal">Legal/Paralegal</a></li>
-                  <li><a href="/categories.php?category=Medical-Health">Medical/Health</a></li>
-                  <li><a href="/categories.php?category=Real-Estate">Real Estate</a></li>
-                  <li><a href="/categories.php?category=Salon/Spa/Fitness">Salon/Spa/Fitness</a></li>
-                  <li><a href="/categories.php?category=Security">Security</a></li>
-                  <li><a href="/categories.php?category=Software/QA/DBA">Software/QA/DBA</a></li>
-                  <li><a href="/categories.php?category=Sechnical-Support">Technical Support</a></li>
-                  <li><a href="/categories.php?category=Transport">Transport</a></li>
-                  <li><a href="/categories.php?category=Writing/Editing">Writing/Editing</a></li>
+                  <a class="sidebar-href" href="/categories.php?category=Accounting-and-Finance"><li>Accounting and Finance</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Admin-and-Office"><li>Admin and Office</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Art/Media/Design"><li>Art/Media/Design</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Biotech-and-Science"><li>Biotech and Science</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Business/Mgmt"><li>Business/Mgmt</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Customer-Service"><li>Customer Service</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Education"><li>Education</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Human-Resources"><li>Human Resources</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Internet-Engineers"><li>Internet Engineers</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Legal-Paralegal"><li>Legal/Paralegal</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Medical-Health"><li>Medical/Health</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Real-Estate"><li>Real Estate</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Salon/Spa/Fitness"><li>Salon/Spa/Fitness</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Security"><li>Security</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Software/QA/DBA"><li>Software/QA/DBA</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Sechnical-Support"><li>Technical Support</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Transport"><li>Transport</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Writing/Editing"><li>Writing/Editing</li></a>
                 </ul>
 
                 <a href="myaccount.php">

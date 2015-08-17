@@ -31,7 +31,6 @@ $user = $_SESSION['email'];
 $userPosts = Ad::userSearch($user);
 
 $userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
-
 ?>
 <html>
 <head>

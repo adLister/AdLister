@@ -21,7 +21,6 @@ class Ad extends Model
         return $instance;
 	}
 
-
     public static function userSearch($search)
     {
         self::dbConnect();
@@ -102,7 +101,6 @@ class Ad extends Model
         $stmt->bindValue(':category', $category, PDO::PARAM_STR);
         $stmt->execute();
         $result= $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
 
         $instance = null;
         if ($result)
@@ -124,7 +122,7 @@ class Ad extends Model
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+
         $count = self::$dbc->query('SELECT count(*) FROM ads');
         $stmt1 = $count->fetchColumn();
         $maxpage = ceil($stmt1 / $limit);

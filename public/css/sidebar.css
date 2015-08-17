@@ -11,6 +11,10 @@
   color: #E1FFFF !important;
 }
 
+.sidebar-href {
+  color: #E1FFFF !important;
+}
+
 .fa-plus, .fa-user, .fa-sign-out {
   padding: 0 5px 0 0px;
 }
