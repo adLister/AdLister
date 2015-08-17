@@ -110,6 +110,10 @@ class Ad extends Model
     public static function paginateCategories($limit, $offset, $category)
     {
         self::dbConnect();
+        $count = self::$dbc->prepare("SELECT count(*) FROM ads WHERE category = :category");
+        $count->bindValue(':category', $category, PDO::PARAM_STR);
+        $count = $count->fetchColumn();
+        $maxpage = ceil($count / $limit);
 
         $stmt = self::$dbc->prepare("SELECT * FROM ads WHERE category = :category LIMIT :limit OFFSET :offset");
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
@@ -118,11 +122,6 @@ class Ad extends Model
         $stmt->execute();
         $result= $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-        $count = self::$dbc->prepare("SELECT count(*) FROM ads WHERE category = :category");
-        $count->bindValue(':category', $category, PDO::PARAM_STR);
-
-        $count = $count->fetchColumn();
-        $maxpage = ceil($count / $limit);
 
         $instance = null;
         if ($result)
