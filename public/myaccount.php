@@ -27,6 +27,7 @@ if(empty($_GET)){
 if(!empty($_GET['delete'])){
   Ad::delete($_GET['id']);
 }
+
 $user = $_SESSION['email'];
 $userPosts = Ad::userSearch($user);
 
