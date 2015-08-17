@@ -28,10 +28,7 @@ if(!empty($_GET['delete'])){
   Ad::delete($_GET['id']);
 }
 $user = $_SESSION['email'];
-$userPosts = Ad::userSearch($user);
-
 $userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
-
 ?>
 <html>
 <head>
@@ -54,6 +51,10 @@ $userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
         </div>
         <div id="container_ads" class="col-md-9">
             <div>
+                <?php 
+                    $max = $userPosts->attributes['maxpage'];
+                    unset($userPosts->attributes['maxpage']);
+                ?>
                 <? foreach ($userPosts->attributes as $key => $value): ?>
                     <?php if($value['posting_user'] == "$user"):?>
                         <div id="most_recent" class="col-sm-12">
@@ -83,8 +84,7 @@ $userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
                     <?php if($page >= 2): ?>    
                         <li id="previous_page" class="pager-buttons"><a href='myaccount.php?page=<?= $page - 1 ?>'>Previous Page</a></li>
                     <?php endif ?>
-                    
-                    <?php if($page != $userPosts->attributes['maxpage']):?>  
+                    <?php if($page != $max):?>  
                         <li id="next_page" class="pager-buttons"><a href='myaccount.php?page=<?= $page + 1 ?>'>Next Page</a></li>
                     <?php endif ?>
                 </ul>

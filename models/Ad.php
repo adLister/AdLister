@@ -66,6 +66,12 @@ class Ad extends Model
     {
         self::dbConnect();
 
+        $count = self::$dbc->prepare('SELECT count(*) FROM ads WHERE posting_user = :posting_user');
+        $count->bindValue(':posting_user', $user, PDO::PARAM_STR);
+        $count->execute();
+        $stmt1 = $count->fetchColumn();
+        $maxpage = ceil($stmt1 / $limit);
+
         $stmt = self::$dbc->prepare("SELECT * FROM ads WHERE posting_user = :posting_user LIMIT :limit OFFSET :offset");
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
@@ -73,9 +79,7 @@ class Ad extends Model
         $stmt->execute();
         $result= $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-        $count = self::$dbc->query('SELECT count(*) FROM ads');
-        $stmt1 = $count->fetchColumn();
-        $maxpage = ceil($stmt1 / $limit);
+
 
         $instance = null;
         if ($result)
@@ -93,6 +97,7 @@ class Ad extends Model
         self::dbConnect();
         $count = self::$dbc->prepare("SELECT count(*) FROM ads WHERE category = :category");
         $count->bindValue(':category', $category, PDO::PARAM_STR);
+        $count->execute();
         $count = $count->fetchColumn();
         $maxpage = ceil($count / $limit);
 
@@ -118,6 +123,10 @@ class Ad extends Model
     public static function paginateHome($limit, $offset)
     {
         self::dbConnect();
+        $count = self::$dbc->query('SELECT count(*) FROM ads');
+        $count->execute();
+        $count = $count->fetchColumn();
+        $maxpage = ceil($count / $limit);
 
         $stmt = self::$dbc->prepare("SELECT * FROM ads LIMIT :limit OFFSET :offset");
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
@@ -125,9 +134,6 @@ class Ad extends Model
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-        $count = self::$dbc->query('SELECT count(*) FROM ads');
-        $stmt1 = $count->fetchColumn();
-        $maxpage = ceil($stmt1 / $limit);
 
         $instance = null;
         if ($result)
