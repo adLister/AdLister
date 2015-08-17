@@ -18,10 +18,6 @@ if (Input::has('logout') && $_GET['logout'] == 'true'){
     exit(); 
 }
 
-if(empty($_GET)){
-   $_GET['page'] = '1';
-}
-
 $category = str_replace('-', ' ', Input::get('category'));
 
 if(empty($_GET['page'])){
