@@ -34,7 +34,6 @@ $ads = Ad::idSearch($id);
 	                            <?php endif; ?>
 	                            <br>
 	                            <div id="post_details">
-	                                <strong><u><?= $value['title'];?></strong>
 	                                <li>Date Created: <?= $value['date_created'];?></li>
 	                                <li>Price: $<?= $value['price'];?></li>
 	                                <li>Description: <?= $value['description'];?></li>
