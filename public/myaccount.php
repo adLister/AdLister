@@ -6,7 +6,7 @@ session_start();
 $sessionId = session_id();
 
 if (Auth::checkUser()){
-    $username = Auth::currentUser();   
+    Auth::currentUser();   
 } else{
     header("Location: welcome.php");
     exit();
@@ -29,7 +29,7 @@ if(!empty($_GET['delete'])){
 }
 
 $user = $_SESSION['email'];
-$userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
+$userPosts = Ad::paginateUserAds(5, (($page-1) * 5), $user);
 ?>
 <html>
 <head>
