@@ -12,8 +12,10 @@ $ads = Ad::idSearch($id);
 	<title>Single Ad</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
 	<link rel="stylesheet" href="/css/sidebar.css">
-    <link rel="stylesheet" href="/css/custom.css"> 
+    <link rel="stylesheet" href="/css/custom.css">
+
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
@@ -34,9 +36,9 @@ $ads = Ad::idSearch($id);
 	                            <?php endif; ?>
 	                            <br>
 	                            <div id="post_details">
-	                                <li>Date Created: <?= $value['date_created'];?></li>
-	                                <li>Price: $<?= $value['price'];?></li>
-	                                <li>Description: <?= $value['description'];?></li>
+	                                <li class="class="single-ad-details"">Date Created: <?= $value['date_created'];?></li>
+	                                <li class="single-ad-details">Price: $<?= $value['price'];?></li>
+	                                <li class="single-ad-details">Description: <?= $value['description'];?></li>
 	                            </div>
 	                        </ul>
 	                    </div>

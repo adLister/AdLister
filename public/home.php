@@ -32,8 +32,8 @@ $userPosts = Ad::paginateHome(10,(($page-1) * 10));
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
-    <link rel="stylesheet" href="/css/sidebar.css">
     <link rel="stylesheet" href="/css/custom.css"> 
+    <link rel="stylesheet" href="/css/sidebar.css">
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
@@ -61,9 +61,8 @@ $userPosts = Ad::paginateHome(10,(($page-1) * 10));
                                     <li>Date Created: <?= $value['date_created'];?></li>
                                     <li>Price: $<?= $value['price'];?></li>
                                     <li>Description: <?= $value['description'];?></li>
-                                    </a>
                                     <?php if($value['image_url']):?>
-                                        <li class="ads-href">This add includes Photos</li>
+                                        <li class="ads-href">This add includes Photos</li></a>
                                     <?php endif; ?>
                                 </ul>
                             </div>
