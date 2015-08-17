@@ -6,8 +6,8 @@
   
             <ul id="menu-content" class="menu-content collapse out">
 
-                <a href="ads.create.php" >
-                  <li class="category" >
+                <a href="ads.create.php">
+                  <li class="category">
                     <i class="fa fa-plus fa-lg "></i> Add Post
                   </li>
                 </a>
@@ -69,13 +69,13 @@
                 </ul>
 
                 <a href="myaccount.php">
-                  <li class="category" >
+                  <li class="category">
                     <i class="fa fa-user fa-lg"></i> My Account
                   </li>
                 </a>
                 
                 <a href="?logout=true">
-                  <li class="category" >
+                  <li class="category">
                     <i class="fa fa-sign-out fa-lg"></i> Log Out
                   </li>
                 </a>
