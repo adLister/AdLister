@@ -32,9 +32,7 @@ if(empty($_GET['page'])){
 }
 
 $userPosts = Ad::paginateCategories(10,(($page-1) * 10), $category);
-// var_dump($userPosts);
 
-// var_dump($page);
 ?>
 <html>
 <head>
