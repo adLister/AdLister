@@ -20,7 +20,7 @@ if (Input::has('logout') && $_GET['logout'] == 'true'){
 
 if(empty($_GET)){
    $page = '1';
-} else{
+}else{
     $page=$_GET['page'];
 }
 
