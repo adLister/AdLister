@@ -25,7 +25,6 @@ if(empty($_GET)){
 
 $userPosts = Ad::paginateHome(10,(($page-1) * 10));
 
-var_dump($userPosts);
 
 ?>
 <!DOCTYPE html>
@@ -46,7 +45,7 @@ var_dump($userPosts);
     <hr>
     <div class="row">
         <div class="col-md-3">
-        <!-- <?= require_once '../views/partials/sidebar.php'; ?> -->
+        <?= require_once '../views/partials/sidebar.php'; ?>
         </div>
         <div id="con tainer_ads" class="col-md-9">
             <div>

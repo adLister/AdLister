@@ -123,9 +123,6 @@ class Ad extends Model
 
         $count = $count->fetchColumn();
         $maxpage = ceil($count / $limit);
-        // var_dump($maxpage);
-        // var_dump($count);
-        // var_dump($limit);
 
         $instance = null;
         if ($result)
@@ -148,8 +145,6 @@ class Ad extends Model
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-        // var_dump($result);
-
         $count = self::$dbc->query('SELECT count(*) FROM ads');
         $stmt1 = $count->fetchColumn();
         $maxpage = ceil($stmt1 / $limit);
@@ -161,7 +156,6 @@ class Ad extends Model
             $instance->attributes = $result;
             $instance->attributes['maxpage'] = $maxpage;
         }
-        // var_dump($instance);
         return $instance;
     }
 
