@@ -23,7 +23,7 @@ if(empty($_GET)){
 }
 
 $category = str_replace('-', ' ', Input::get('category'));
-$ads = Ad::categorySearch($category);
+// $ads = Ad::categorySearch($category);
 
 if(empty($_GET['page'])){
    $page = '1';
@@ -31,10 +31,7 @@ if(empty($_GET['page'])){
     $page=$_GET['page'];
 }
 
-$userPosts = Ad::paginateCategories(10,(($page-1) * 10), $category);
-// var_dump($userPosts);
-
-// var_dump($page);
+$userPosts = Ad::paginateCategories(5,(($page-1) * 5), $category);
 ?>
 <html>
 <head>
@@ -60,10 +57,8 @@ $userPosts = Ad::paginateCategories(10,(($page-1) * 10), $category);
                 <?php 
                     $max = $userPosts->attributes['maxpage'];
                     unset($userPosts->attributes['maxpage']);
-
-                    // var_dump($max);
                 ?>
-                <? foreach ($ads->attributes as $key => $value): ?>
+                <? foreach ($userPosts->attributes as $key => $value): ?>
                     <?php if($value['category'] == "$category"):?>
                         <div id="most_recent" class="col-sm-12">
                             <div class="row">
@@ -90,7 +85,7 @@ $userPosts = Ad::paginateCategories(10,(($page-1) * 10), $category);
                         <li id="previous_page" class="pager-buttons"><a href='categories.php?page=<?= $page - 1 ?>'>Previous Page</a></li>
                     <?php endif ?>
                     
-                    <?php if($page < $max):?>  
+                    <?php if($page != $max):?>  
                         <li id="next_page" class="pager-buttons"><a href='categories.php?page=<?= $page + 1 ?>'>Next Page</a></li>
                     <?php endif ?>
                 </ul>

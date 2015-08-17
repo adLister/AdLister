@@ -21,26 +21,6 @@ class Ad extends Model
         return $instance;
 	}
 
-    public static function categorySearch($search)
-    {
-        self::dbConnect();
-
-        $query = 'SELECT * FROM ads WHERE category = :search';
-        $stmt = self::$dbc->prepare($query);
-        $stmt->bindValue(':search', $search, PDO::PARAM_INT);
-        $stmt->execute();
-
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $instance = null;
-        if ($result)
-        {
-            $instance = new static;
-            $instance->attributes = $result;
-        }
-        return $instance;
-    }
-
     public static function userSearch($search)
     {
         self::dbConnect();
@@ -120,12 +100,8 @@ class Ad extends Model
         
         $count = self::$dbc->prepare("SELECT count(*) FROM ads WHERE category = :category");
         $count->bindValue(':category', $category, PDO::PARAM_STR);
-
         $count = $count->fetchColumn();
         $maxpage = ceil($count / $limit);
-        // var_dump($maxpage);
-        // var_dump($count);
-        // var_dump($limit);
 
         $instance = null;
         if ($result)
@@ -147,8 +123,6 @@ class Ad extends Model
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        // var_dump($result);
 
         $count = self::$dbc->query('SELECT count(*) FROM ads');
         $stmt1 = $count->fetchColumn();
@@ -161,7 +135,6 @@ class Ad extends Model
             $instance->attributes = $result;
             $instance->attributes['maxpage'] = $maxpage;
         }
-        // var_dump($instance);
         return $instance;
     }
 
