@@ -23,7 +23,6 @@ if(empty($_GET)){
 }
 
 $category = str_replace('-', ' ', Input::get('category'));
-// $ads = Ad::categorySearch($category);
 
 if(empty($_GET['page'])){
    $page = '1';
