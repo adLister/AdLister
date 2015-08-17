@@ -58,7 +58,7 @@ $userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
                     <?php if($value['posting_user'] == "$user"):?>
                         <div id="most_recent" class="col-sm-12">
                             <div class="row">
-                                <a href="/ads.show.php?id=<?= $value['id'] ?>">
+                                <a  class="ads-href" href="/ads.show.php?id=<?= $value['id'] ?>">
                                 <strong><u><?= $value['title'];?></u></strong>
                                 <ul>
                                     <div id="post_details" class="col-sm-6">
@@ -67,7 +67,7 @@ $userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
                                         <li>Description: <?= $value['description'];?></li>
                                         <li>Category: <?= $value['category'];?></li></a>
                                         <?php if($value['image_url']):?>
-                                            <li>This add includes Photos</li>
+                                            <li class="ads-href">This add includes Photos</li>
                                         <?php endif; ?>
                                     </div>
                                 </ul>

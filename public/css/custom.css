@@ -17,6 +17,10 @@ hr{
     border-width: 2px;
 }
 
+.ads-href {
+    color: #13505B !important;
+}
+
 #post-details {
     float: right;
 }

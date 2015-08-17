@@ -61,7 +61,7 @@ $userPosts = Ad::paginateCategories(10,(($page-1) * 10), $category);
                     <?php if($value['category'] == "$category"):?>
                         <div id="most_recent" class="col-sm-12">
                             <div class="row">
-                                <a href="/ads.show.php?id=<?= $value['id'] ?>">
+                                <a  class="ads-href" href="/ads.show.php?id=<?= $value['id'] ?>">
                                 <strong><u><?= $value['title'];?></u></strong>
                                 <ul>
                                     <div id="post_details" class="col-sm-6">
@@ -69,7 +69,7 @@ $userPosts = Ad::paginateCategories(10,(($page-1) * 10), $category);
                                         <li>Price: $<?= $value['price'];?></li>
                                         <li>Description: <?= $value['description'];?></li></a>
                                         <?php if($value['image_url']):?>
-                                            <li>This add includes Photos</li>
+                                            <li class="ads-href">This add includes Photos</li>
                                         <?php endif; ?>
                                     </div>
                                 </ul>
