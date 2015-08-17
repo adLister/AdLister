@@ -17,6 +17,8 @@ $ads = Ad::idSearch($id);
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
+	<h1><?= $ads->attributes['0']['title']; ?></h1>
+	<hr>
 	<div class="row">
 		<div class="col-md-3">
 	    	<?= require_once '../views/partials/sidebar.php';?>
