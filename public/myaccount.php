@@ -70,14 +70,14 @@ $userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
                                         <?php endif; ?>
                                     </div>
                                 </ul>
-                                <a class="btn btn-info" href="ads.edit.php?id=<?= $value['id'] ?>">Edit Post</a>	
+                                <a class="btn btn-info" href="ads.edit.php?id=<?= $value['id'] ?>">Edit Post</a>    
                                 <a class="btn btn-warning" href="myaccount.php?delete=y&id=<?= $value['id'] ?>">Delete Post</a>
                             </div><br>
                         </div>
                     <? endif; ?>
                 <? endforeach; ?>
             </div>
-	        <div>
+            <div>
                 <ul class="pager">
                     <?php if($page >= 2): ?>    
                         <li id="previous_page" class="pager-buttons"><a href='myaccount.php?page=<?= $page - 1 ?>'>Previous Page</a></li>

@@ -10,6 +10,11 @@
   height: 100%;
   color: #E1FFFF !important;
 }
+
+.fa-plus, .fa-user, .fa-sign-out {
+  padding: 0 5px 0 0px;
+}
+
 .nav-side-menu .brand{
   background-color: #13505B;
   color: #E1FFFF !important;
