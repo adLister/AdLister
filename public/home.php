@@ -38,7 +38,7 @@ $userPosts = Ad::paginateHome(10,(($page-1) * 10));
     <hr>
     <div class="row">
         <div class="col-md-3">
-        <?= require_once '../views/partials/sidebar.php'; ?>
+            <?= require_once '../views/partials/sidebar.php'; ?>
         </div>
         <div id="con tainer_ads" class="col-md-9">
             <div>
@@ -56,9 +56,8 @@ $userPosts = Ad::paginateHome(10,(($page-1) * 10));
                                     <li>Date Created: <?= $value['date_created'];?></li>
                                     <li>Price: $<?= $value['price'];?></li>
                                     <li>Description: <?= $value['description'];?></li>
-                                    </a>
                                     <?php if($value['image_url']):?>
-                                        <li class="ads-href">This add includes Photos</li>
+                                        <li class="ads-href">This add includes Photos</li></a>
                                     <?php endif; ?>
                                 </ul>
                             </div>
