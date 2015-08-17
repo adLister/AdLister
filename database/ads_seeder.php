@@ -4,9 +4,9 @@ require_once 'db_connect.php';
 
 echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
 
-$truncate = 'TRUNCATE ads';
+// $truncate = 'TRUNCATE ads';
 
-$dbc->exec($truncate);
+$dbc->exec();
 
 $categories = array(
     'Accounting and Finance',
@@ -47,14 +47,7 @@ $categories = array(
     'Video Gaming',
     'Writing/Editing'
     );
-  
-<<<<<<< HEAD
-$ad = [
-    'title' => 'toothbrush', 'description' => 'like new', 'image_url' => 'pingpong.jpeg','category' => "$category", 'price' => '5', 'posting_user' => 'agutie95@yahoo.com'
-];
-=======
->>>>>>> 05bcd54d6e120c0c9bb1e0bfb92d7f679ecb0cfd
-
+if($dbc->'id' < 50000){
 foreach ($categories as $category) {
 $ad = [
     'title' => 'toothbrush', 'description' => 'like new', 'image_url' => 'pingpong.jpeg','category' => "$category", 'price' => '5', 'posting_user' => 'rem@gmail.com'
@@ -69,6 +62,9 @@ $ad = [
     $stmt ->bindValue(':image_url', $ad['image_url'], PDO::PARAM_STR);
     $stmt ->bindValue(':posting_user', $ad['posting_user'], PDO::PARAM_STR);
     $stmt->execute();
-    echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
     
 }
+}
+    echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
+    var_dump($dbc->lastInsertId());
+
