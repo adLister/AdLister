@@ -31,6 +31,9 @@ $user = $_SESSION['email'];
 $userPosts = Ad::userSearch($user);
 
 $userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
+
+var_dump($userPosts);
+
 ?>
 <html>
 <head>
@@ -49,7 +52,7 @@ $userPosts = Ad::paginateUserAds(5,(($page-1) * 5),$user);
     <hr>
     <div class="row">
         <div class="col-md-3">
-            <?= require_once '../views/partials/sidebar.php'; ?>
+            <!-- <?= require_once '../views/partials/sidebar.php'; ?> -->
         </div>
         <div id="container_ads" class="col-md-9">
             <div>

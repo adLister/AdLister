@@ -25,29 +25,16 @@ if(empty($_GET)){
 $category = str_replace('-', ' ', Input::get('category'));
 $ads = Ad::categorySearch($category);
 
-// $errors = array();
-// $limit = 5;
-// $offset = (($_GET['page']-1) * $limit);
+if(empty($_GET['page'])){
+   $page = '1';
+}else{
+    $page=$_GET['page'];
+}
 
-// if(empty($_GET)){
-//     header("Location: categories.php?category=$category&page=1");
-//     exit();
-// }
+$userPosts = Ad::paginateCategories(10,(($page-1) * 10), $category);
+// var_dump($userPosts);
 
-// $stmt = $dbc->prepare("SELECT * FROM ads LIMIT :limit OFFSET :offset");
-// $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-// $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-// $stmt->execute();
-// $ads= $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// $count = $dbc->query('SELECT count(*) FROM ads');
-// $stmt1 = $count->fetchColumn();
-// $maxpage = ceil($stmt1 / $limit);
-
-// if($_GET['page'] > $maxpage || !is_numeric($_GET['page']) || $_GET['page'] < 1){    
-//     header("location: ?page=$maxpage");
-//     exit();
-// }
+// var_dump($page);
 ?>
 <html>
 <head>
@@ -66,10 +53,16 @@ $ads = Ad::categorySearch($category);
     <hr>
     <div class="row">
         <div class="col-md-3">
-            <?= require_once '../views/partials/sidebar.php'; ?>
+           <?= require_once '../views/partials/sidebar.php'; ?>
         </div>
         <div id="container_ads" class="col-md-9">
             <div>
+                <?php 
+                    $max = $userPosts->attributes['maxpage'];
+                    unset($userPosts->attributes['maxpage']);
+
+                    // var_dump($max);
+                ?>
                 <? foreach ($ads->attributes as $key => $value): ?>
                     <?php if($value['category'] == "$category"):?>
                         <div id="most_recent" class="col-sm-12">
@@ -91,17 +84,17 @@ $ads = Ad::categorySearch($category);
                     <? endif; ?>
                 <? endforeach; ?>
             </div>
-    <!--    <div>
+            <div>
                 <ul class="pager">
-                    <?php if($_GET['page'] >= 2): ?>    
-                        <li id="previous_page" class="pager-buttons"><a href='index.php?page=<?= $_GET['page'] - 1 ?>'>Previous Page</a></li>
+                    <?php if($page >= 2): ?>    
+                        <li id="previous_page" class="pager-buttons"><a href='categories.php?page=<?= $page - 1 ?>'>Previous Page</a></li>
                     <?php endif ?>
                     
-                    <?php if($_GET['page'] != $maxpage):?>  
-                        <li id="next_page" class="pager-buttons"><a href='index.php?page=<?= $_GET['page'] + 1 ?>'>Next Page</a></li>
+                    <?php if($page < $max):?>  
+                        <li id="next_page" class="pager-buttons"><a href='categories.php?page=<?= $page + 1 ?>'>Next Page</a></li>
                     <?php endif ?>
                 </ul>
-            </div> -->
+            </div>
         </div>
     </div>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>

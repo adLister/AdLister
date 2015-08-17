@@ -106,6 +106,38 @@ class Ad extends Model
         return $instance;
     }
 
+
+    public static function paginateCategories($limit, $offset, $category)
+    {
+        self::dbConnect();
+
+        $stmt = self::$dbc->prepare("SELECT * FROM ads WHERE category = :category LIMIT :limit OFFSET :offset");
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':category', $category, PDO::PARAM_STR);
+        $stmt->execute();
+        $result= $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $count = self::$dbc->prepare("SELECT count(*) FROM ads WHERE category = :category");
+        $count->bindValue(':category', $category, PDO::PARAM_STR);
+
+        $count = $count->fetchColumn();
+        $maxpage = ceil($count / $limit);
+        // var_dump($maxpage);
+        // var_dump($count);
+        // var_dump($limit);
+
+        $instance = null;
+        if ($result)
+        {
+            $instance = new static;
+            $instance->attributes = $result;
+            $instance->attributes['maxpage'] = $maxpage;
+        }
+        return $instance;
+    }
+
+
     public static function paginateHome($limit, $offset)
     {
         self::dbConnect();
