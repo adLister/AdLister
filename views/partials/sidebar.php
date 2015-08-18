@@ -63,7 +63,7 @@
                   <a class="sidebar-href" href="/categories.php?category=Salon/Spa/Fitness"><li>Salon/Spa/Fitness</li></a>
                   <a class="sidebar-href" href="/categories.php?category=Security"><li>Security</li></a>
                   <a class="sidebar-href" href="/categories.php?category=Software/QA/DBA"><li>Software/QA/DBA</li></a>
-                  <a class="sidebar-href" href="/categories.php?category=Sechnical-Support"><li>Technical Support</li></a>
+                  <a class="sidebar-href" href="/categories.php?category=Technical-Support"><li>Technical Support</li></a>
                   <a class="sidebar-href" href="/categories.php?category=Transport"><li>Transport</li></a>
                   <a class="sidebar-href" href="/categories.php?category=Writing/Editing"><li>Writing/Editing</li></a>
                 </ul>
