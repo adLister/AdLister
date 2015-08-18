@@ -42,7 +42,7 @@ if(!empty($_POST)){
             $errors[] = $e->getMessage();
     }
 
-    if(!empty($_FILES['file'])) {
+    if(!empty($_FILES['file']['name'])) {
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $fileContents = file_get_contents($_FILES["file"]["tmp_name"]);
         $mimeType = $finfo->buffer($fileContents);
@@ -58,8 +58,8 @@ if(!empty($_POST)){
         }
     }
 
-    var_dump($_SESSION);
-    if(empty($errors) && !empty($_FILES['file'])){
+    // var_dump($_SESSION);
+    if(empty($errors) && !empty($_FILES['file']['name'])){
         $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, price, category, posting_user) 
         VALUES(:title, :description, :image_url, :price, :category, :posting_user)");
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
