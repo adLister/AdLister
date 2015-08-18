@@ -4,6 +4,10 @@ require_once '../bootstrap.php';
 
 session_start();
 $sessionId = session_id();
+if(Input::has('id')){
+    $id = Input::get('id');
+    $ad = Ad::find($id);
+}
 
 if (Auth::checkUser()){
     Auth::currentUser();   
@@ -42,7 +46,7 @@ if(!empty($_POST)){
             $errors[] = $e->getMessage();
     }
 
-    if(!empty($_FILES['file'])) {
+    if(!empty($_FILES['file']['name'])) {
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $fileContents = file_get_contents($_FILES["file"]["tmp_name"]);
         $mimeType = $finfo->buffer($fileContents);
@@ -58,24 +62,41 @@ if(!empty($_POST)){
         }
     }
 
-    var_dump($_SESSION);
-    if(empty($errors) && !empty($_FILES['file'])){
-        $newPost = $dbc->prepare("INSERT INTO ads(title, description, image_url, price, category, posting_user) 
-        VALUES(:title, :description, :image_url, :price, :category, :posting_user)");
+    if(empty($errors) && !empty($_FILES['file']['name'])){
+        $newPost = $dbc->prepare("UPDATE ads SET  
+                    description = :description,
+                    image_url = :image_url,
+                    category = :category,
+                    title = :title,
+                    price = :price,
+                    posting_user = :posting_user 
+        WHERE id = :id");
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
+        $newPost->bindValue(':id', $ad->id, PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
         $newPost->bindValue(':image_url', $filename, PDO::PARAM_STR);
         $newPost->bindValue(':price', Input::getNumber('price'), PDO::PARAM_STR);
         $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
         $newPost->bindValue(':posting_user', $_SESSION['LOGGED_IN_USER'], PDO::PARAM_STR);
-        $newPost->execute();
+       $result = $newPost->execute();
 
-        sleep(3);
-        header('Location: index.php');
+       var_dump($result);
+       var_dump($_POST);
+       var_dump($newPost);
+       var_dump($ad->id);
+
+        // sleep(3);
+        // header('Location: index.php');
         exit;
     }else{
-        $newPost = $dbc->prepare("INSERT INTO ads(title, description, price, category, posting_user) 
-        VALUES(:title, :description, :price, :category, :posting_user)");
+        $newPost = $dbc->prepare("UPDATE ads SET  
+                    description = :description,
+                    category = :category,
+                    title = :title,
+                    price = :price,
+                    posting_user = :posting_user
+        WHERE id = :id");
+        $newPost->bindValue(':id', Input::get('id'), PDO::PARAM_STR);
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
         $newPost->bindValue(':price', Input::getNumber('price'), PDO::PARAM_STR);
@@ -90,10 +111,6 @@ if(!empty($_POST)){
 
 }
 
-if(Input::has('id')){
-    $id = Input::get('id');
-    $ad = Ad::find($id);
-}
 $current = $ad->category;
 $category = array(
 'Accounting and Finance',
@@ -161,7 +178,7 @@ $category = array(
         </div>
         <div id="container_ads" class="col-md-9">
             <div id="form">
-                <form action="ads.edit.php" method="POST" enctype="multipart/form-data">
+                <form action="ads.edit.php?id=<?= $ad->id ?>" method="POST" enctype="multipart/form-data">
                     <label>*Title:</label>
                     <input id="title" type="text" placeholder="Post Title" name="title" value="<?php echo $ad->title; ?>" ><br>
 
