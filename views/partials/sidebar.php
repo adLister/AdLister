@@ -1,5 +1,5 @@
 <div class="nav-side-menu">
-    <a href = "home.php"><div class="brand">WeGotIt</div></a>
+    <a href = "/home"><div class="brand">WeGotIt</div></a>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
   
         <div class="menu-list">
@@ -68,7 +68,7 @@
                   <a class="sidebar-href" href="/categories.php?category=Writing/Editing"><li>Writing/Editing</li></a>
                 </ul>
 
-                <a href="myaccount.php">
+                <a href="/myaccount">
                   <li class="category">
                     <i class="fa fa-user fa-lg"></i> My Account
                   </li>

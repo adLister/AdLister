@@ -3,9 +3,6 @@ switch ($_SERVER['REQUEST_URI']) {
     case '/home':
         include 'home.php';
         break;
-    case '/ads/show':
-        include 'ads.show.php';
-        break;
     case '/category=$category':
         include 'categories.php';
         break;
