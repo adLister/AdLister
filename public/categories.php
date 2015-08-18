@@ -77,11 +77,11 @@ $userPosts = Ad::paginateCategories(10,(($page-1) * 10), $category);
             <div>
                 <ul class="pager">
                     <?php if($page >= 2): ?>    
-                        <li id="previous_page" class="pager-buttons"><a href='categories.php?page=<?= $page - 1 ?>'>Previous Page</a></li>
+                        <li id="previous_page" class="pager-buttons"><a href='categories.php?category=<?= $category ?>&page=<?= $page - 1 ?>'>Previous Page</a></li>
                     <?php endif ?>
                     
                     <?php if($page != $max):?>  
-                        <li id="next_page" class="pager-buttons"><a href='categories.php?page=<?= $page + 1 ?>'>Next Page</a></li>
+                        <li id="next_page" class="pager-buttons"><a href='categories.php?category=<?= $category ?>&page=<?= $page + 1 ?>'>Next Page</a></li>
                     <?php endif ?>
                 </ul>
             </div>

@@ -18,7 +18,7 @@ if (Input::has('logout') && $_GET['logout'] == 'true'){
     exit(); 
 }
 
-if(empty($_GET)){
+if(empty($_GET['page'])){
    $page = '1';
 }else{
     $page=$_GET['page'];
