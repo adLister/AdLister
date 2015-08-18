@@ -11,6 +11,11 @@ input:focus{
     outline-color: #DFD7E2;
 }
 
+input {
+    font-size: 14px;
+    font-family: Helvetica, sans-serif;
+}
+
 /*styling for header*/
 
 #header{
@@ -79,8 +84,9 @@ input:focus{
 }
 
 #submit-button {
-    width: 200px;
+    width: 207px;
     height: 25px;
+    padding: 0px;
     border: 1px solid #DFD7E2;
     border-radius: 5px;
     background-color: #fff;
