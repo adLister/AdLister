@@ -4,6 +4,7 @@ require_once '../bootstrap.php';
 
 session_start();
 $sessionId = session_id();
+
 if(Input::has('id')){
     $id = Input::get('id');
     $ad = Ad::find($id);
@@ -70,7 +71,7 @@ if(!empty($_POST)){
                     title = :title,
                     price = :price,
                     posting_user = :posting_user 
-        WHERE id = :id");
+                    WHERE id = :id");
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
         $newPost->bindValue(':id', $ad->id, PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
@@ -78,15 +79,10 @@ if(!empty($_POST)){
         $newPost->bindValue(':price', Input::getNumber('price'), PDO::PARAM_STR);
         $newPost->bindValue(':category', Input::getString('category'), PDO::PARAM_STR);
         $newPost->bindValue(':posting_user', $_SESSION['LOGGED_IN_USER'], PDO::PARAM_STR);
-       $result = $newPost->execute();
+        $result = $newPost->execute();
 
-       var_dump($result);
-       var_dump($_POST);
-       var_dump($newPost);
-       var_dump($ad->id);
-
-        // sleep(3);
-        // header('Location: index.php');
+        sleep(3);
+        header('Location: index.php');
         exit;
     }else{
         $newPost = $dbc->prepare("UPDATE ads SET  
@@ -95,8 +91,8 @@ if(!empty($_POST)){
                     title = :title,
                     price = :price,
                     posting_user = :posting_user
-        WHERE id = :id");
-        $newPost->bindValue(':id', Input::get('id'), PDO::PARAM_STR);
+                    WHERE id = :id");
+        $newPost->bindValue(':id', $ad->id, PDO::PARAM_STR);
         $newPost->bindValue(':title', Input::getString('title'), PDO::PARAM_STR);
         $newPost->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
         $newPost->bindValue(':price', Input::getNumber('price'), PDO::PARAM_STR);
@@ -108,7 +104,6 @@ if(!empty($_POST)){
         header('Location: index.php');
         exit;
     }
-
 }
 
 $current = $ad->category;

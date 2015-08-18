@@ -41,7 +41,7 @@ if(!empty($_POST)){
     }catch(Exception $e){
             $errors[] = $e->getMessage();
     }
-var_dump($_FILES);
+// var_dump($_FILES);
     if(!empty($_FILES['file']['name'])) {
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $fileContents = file_get_contents($_FILES["file"]["tmp_name"]);
