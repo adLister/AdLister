@@ -63,7 +63,7 @@ $userPosts = Ad::paginateHome(10,(($page-1) * 10));
                                     <li>Description: <?= $value['description'];?></li>
                                     </a>
                                     <?php if($value['image_url']):?>
-                                        <li class="ads-href">This add includes Photos</li>
+                                        <li class="ads-href">This ad includes Photos</li>
                                     <?php endif; ?>
                                 </ul>
                             </div>

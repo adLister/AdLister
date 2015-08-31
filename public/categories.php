@@ -65,7 +65,7 @@ $userPosts = Ad::paginateCategories(5,(($page-1) * 5), $category);
                                         <li>Price: $<?= $value['price'];?></li>
                                         <li>Description: <?= $value['description'];?></li>
                                         <?php if($value['image_url']):?>
-                                            <li class="ads-href">This add includes Photos</li></a>
+                                            <li class="ads-href">This ad includes Photos</li></a>
                                         <?php endif; ?>
                                     </div>
                                 </ul>
